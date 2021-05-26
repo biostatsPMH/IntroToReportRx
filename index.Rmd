@@ -523,14 +523,20 @@ rm_mvsum(glm_fit)
 
 ## ggsurv
 
-Plot KM and CI curves using ggplot2 with a lot of options for customisation for publication-ready plots.
+... this function has been replaced by `ggkmcif` and may be deprecated. 
+
+
+## ggkmcif
+
+Plot KM and CI curves using ggplot2 with the usual reportRx arguments and a lot of options for customisation for publication-ready plots.
 
   ```
   ggsurv(c("time","status"),"Sex", data=lung,fsize=8,nsize=3)
   ```
 
 ```{r}
-ggsurv(c("time","status"),"Sex", data=lung,fsize=8,nsize=3)
+
+#reportRx::ggsurv(c("time","status"),"Sex", data=lung,fsize=8,nsize=3)
 ```
 
 
