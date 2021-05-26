@@ -531,12 +531,12 @@ rm_mvsum(glm_fit)
 Plot KM and CI curves using ggplot2 with the usual reportRx arguments and a lot of options for customisation for publication-ready plots.
 
   ```
-  ggsurv(c("time","status"),"Sex", data=lung,fsize=8,nsize=3)
+  ggkmcif(c("time","status"),"Sex", data=lung,fsize=10,nsize=4)
+
   ```
 
 ```{r}
-
-reportRx:::ggkmcif(c("time","status"),"Sex", data=lung,fsize=8,nsize=3)
+ggkmcif(c("time","status"),"Sex", data=lung,fsize=10,nsize=4)
 ```
 
 
@@ -641,4 +641,19 @@ Returns:
 ```{r,comment=''}
 excelCol(A,B,BG,CC)
 ```
+
+# Github
+
+(reportRx)[https://github.com/biostatsPMH/reportRx] and (this documentation)[https://github.com/biostatsPMH/IntroToReportRx] are available on the PMH Biostats Github page, along with Jessica's (swimmplot package)[https://github.com/biostatsPMH/swimplot].
+
+Anyone can copy or download code from the git repository, without fear of deleting anything.
+
+!()[images/github.png]
+
+## Help us Improve
+
+If you find a bug or would like to request a new feature you can (log an issue)[https://github.com/biostatsPMH/reportRx/issues]
+
+!()[images/git_hub_add.png]
+
 
