@@ -1,0 +1,95 @@
+---
+title: "Untitled"
+subtitle: ''
+author: "Your Name Here"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  bookdown::html_document2:
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+  bookdown::word_document2:
+    reference_docx: /Users/lisaavery/OneDrive - UHN/wordTemplate.docx
+    fig_height: 5
+    fig_width: 7
+  bookdown::pdf_document2:
+    latex_engine: xelatex
+    keep_tex: yes
+    fig_height: 5
+    fig_width: 7
+sansfont: Calibri Light
+mainfont: Calibri Light
+# This is for linkage with a  bib file
+bibliography: bibliography.bib
+csl: Vancouver.csl
+link-citations: yes
+always_allow_html: true
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,warning=FALSE,message = FALSE)
+library(tidyverse)
+library(reportRx)
+
+if (is.null(knitr::pandoc_to())){options('doc_type'='tblOnly')} else {if (knitr::pandoc_to("docx")) {options('doc_type'='doc')} else (options('doc_type'='pdf'))}
+
+```
+
+
+# The lung data
+```{r}
+library(survival)
+str(lung)
+lung <- lung %>%
+  mutate(Status = factor(status),
+         Sex = if_else(sex==1,"male","female"))
+
+```
+
+# covsum
+
+```{r}
+rm_covsum(data=lung,
+          maincov='Status',
+          covs = c('age','Sex','wt.loss'))
+```
+
+
+# References
+
+<div id="refs"></div>
+
+
+# Repetitive Code Chunks
+```{r repeat-chunks,eval=F}
+
+src = lapply(1:18, function(i) {
+  label=paste0('trnsfm-sheet-',i)
+  caption <- paste('Study',i)
+
+  r_chunks_to_write = c("```{r {{label}},fig.height=7,fig.cap='{{cap}}'}", 
+             " analysis_data[[{{i}}]] %>%",
+    "pivot_longer(cols=c(Value,sqrtValue,logValue),names_to='Transform',values_to='Value') %>%",
+    "na.omit() %>%",
+    "ggplot(aes(x=Value)) +",
+    "geom_histogram() +",
+    "facet_grid(Group~Transform,scale='free') ",
+    '```\n\n')
+  knit_expand(text=r_chunks_to_write,
+              label=label,cap=caption)
+})
+# Output the source to allow reporting
+sink('repeat_chunks.Rmd')
+for (i in seq_along(src)){
+  cat(src[[i]])
+}
+sink()
+# Now the rmd file can be edited to have comments added
+# there are saved in strings for easy and reproducible compilation
+```
+
+```{r chunk-insert, child='repeat_chunks.Rmd',eval=F}
+# This will be replaced by the content of the child document
+```
+

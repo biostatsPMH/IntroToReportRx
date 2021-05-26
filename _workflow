@@ -1,0 +1,15 @@
+Porting to github:
+
+1. Make changes to index.Rmd
+update the book with this command in the console: bookdown::render_book("index.rmd")
+
+2. Push the commit in the main branch to github
+
+3. Push the rendered book to the gh-pages branch on the the remote repository by entering this into the Terminal:
+
+git subtree push --prefix _book origin gh-pages
+
+
+Notes:
+make sure that an empty .nojekyll file exists in the gh-pages branch
+The easiest way to do this is in github, add a file, create an empty .nojekyll file
