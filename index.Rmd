@@ -536,7 +536,7 @@ Plot KM and CI curves using ggplot2 with the usual reportRx arguments and a lot 
 
 ```{r}
 
-#reportRx::ggsurv(c("time","status"),"Sex", data=lung,fsize=8,nsize=3)
+reportRx:::ggkmcif(c("time","status"),"Sex", data=lung,fsize=8,nsize=3)
 ```
 
 
