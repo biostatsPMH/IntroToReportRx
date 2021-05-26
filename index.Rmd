@@ -662,5 +662,5 @@ If you find a bug or would like to request a new feature you can [log an issue](
 
 If you don't already have a github account you will need to set one up to [log issues](https://github.com/biostatsPMH/reportRx/issues) or [access the code](https://github.com/biostatsPMH/reportRx/tree/devel).
 
-If you would like to log issues using your uhnresearch email (and your real name!) will help us to prioritise issues arising from within the department.
+Please log issues using your **uhnresearch email** (and your real name!). This will help us to prioritise issues arising from within the department.
 
