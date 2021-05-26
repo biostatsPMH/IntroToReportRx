@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.12 excelCol | reportRx &amp; R Markdown</title>
-  <meta name="description" content="3.12 excelCol | reportRx &amp; R Markdown" />
+  <title>3.1 installing reportRx | reportRx &amp; R Markdown</title>
+  <meta name="description" content="3.1 installing reportRx | reportRx &amp; R Markdown" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.12 excelCol | reportRx &amp; R Markdown" />
+  <meta property="og:title" content="3.1 installing reportRx | reportRx &amp; R Markdown" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.12 excelCol | reportRx &amp; R Markdown" />
+  <meta name="twitter:title" content="3.1 installing reportRx | reportRx &amp; R Markdown" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="outtable.html"/>
-<link rel="next" href="github.html"/>
+<link rel="prev" href="reportrx.html"/>
+<link rel="next" href="lung-data.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -193,23 +193,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="excelcol" class="section level2" number="3.12">
-<h2><span class="header-section-number">3.12</span> excelCol</h2>
-<p>Retrieve the column numbers corresponding to Excel column headers. This can be useful if variables are referred to by Excel column names in the statistical analysis plan.</p>
-<p>Example:</p>
-<pre><code>excelCol(A,B,BG,CC)</code></pre>
-<p>Returns:</p>
-<pre><code> A  B BG CC 
- 1  2 59 81 </code></pre>
+<div id="installing-reportrx" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> installing reportRx</h2>
+<p>To install <code>reportRx</code> from the github repository you need to install the <code>devtools</code> package:</p>
+<pre><code>install.packages(&#39;devtools&#39;)</code></pre>
+<p>Our most recent version, with the features presented here can then be directly downloaded from github:</p>
+<pre><code>devtools::install_github(&quot;biostatsPMH/reportRx&quot;, ref=&quot;devel&quot;)</code></pre>
+<p>For the older stable version you can use this:</p>
+<pre><code>devtools::install_github(&quot;biostatsPMH/reportRx&quot;, ref=&quot;master&quot;)</code></pre>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="outtable.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="github.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="reportrx.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lung-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

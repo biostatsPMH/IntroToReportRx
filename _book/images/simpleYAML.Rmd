@@ -1,0 +1,26 @@
+---
+title: "Untitled"
+author: "Your Name Here"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  pdf_document:
+    latex_engine: xelatex
+  word_document:
+    fig_height: 5
+    fig_width: 7
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(reportRx)
+
+# This line will ensure that the reportRx tables print properly on screen, to Word, to pdf and to HTML
+# This requires version 1.33, use citation('knitr') to check your version and re-install if necessary.
+if (is.null(knitr::pandoc_to())){options('doc_type'='tblOnly')} else {if (knitr::pandoc_to("docx")) {options('doc_type'='doc')} else (options('doc_type'='pdf'))}
+```
+
+# Simple YAML header
+This header will include your document title, name and will automatically write the current date in the document.
+
+Options are given for both pdf and word outputs, but by clicking on the Knit button you can output to any type of document ![](images/knitButton.png).
+
