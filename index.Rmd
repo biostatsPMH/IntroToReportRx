@@ -8,9 +8,12 @@ bibliography:
   - bibfile.bib
 csl: Vancouver.csl
 site: bookdown::bookdown_site
+header-includes:
+  - \usepackage{tabu}
 output:
-  bookdown::pdf_document2:
+  bookdown::pdf_book:
     latex_engine: xelatex
+    toc: yes
   bookdown::gitbook: 
     split_by: 'section'
     pandoc_args: [ "--csl", "Vancouver.csl" ]
@@ -27,7 +30,7 @@ output:
         toolbar:
         position: fixed
       edit : null
-      download: null
+      download: "pdf"
       search: yes
       sharing:
         facebook: false
@@ -41,10 +44,7 @@ output:
 link-citations: yes
 colorlinks: yes
 graphics: yes
-lot: yes
-lof: yes
 fontsize: 11pt
-monofont: "Source Code Pro"
 monofontoptions: "Scale=0.8"
 ---
 
@@ -55,35 +55,33 @@ library(reportRx)
 #rmdBibfile("../sanitised-library.bib","bibfile.bib")
 ```
 
-
 # Introduction
 
 **R Markdown** is an alternative to R Sweave for literate programming and reproducible research. It can output to html, Word and PDF.
 
 **reportRx** is a package to facilitate and standardise the presentation of common statistical analyses. 
 
-There are three basic types of functions:
-
+There are four basic types of functions:
+  
 - tabular reporting functions (`covsum`,`uvsum`,`mvvsum`,`ordsum`)
 - wrappers for printing in Sweave (`pcovsum`,`puvsum`,`pmvsum`) 
 - wrappers for printing in RMarkdown (`rm_covsum`,`rm_uvsum`,`rm_mvsum`)
 - plotting functions (`ggkmcif`,`plotunivariate`,`forestplot`,`riskplot`)
 
-R Markdown + reportRx  = More time on stats and less time on formatting `r emo::ji("smile")` 
-
+R Markdown + reportRx  = More time on stats and less time on formatting <!--`r emo::ji("smile")` -->
 
 <a href="images/reportRxRMarkdownDemo.Rmd" target="_blank">A demo RMarkdown document show casing the reportRx functions is available here.</a> 
-
-
-# R Markdown 
-
-R Markdown is a package designed for literate R programming and is part of the [RStudio IDE](https://www.rstudio.com/products/rstudio/download/).
+  
+  
+  # R Markdown 
+  
+  R Markdown is a package designed for literate R programming and is part of the [RStudio IDE](https://www.rstudio.com/products/rstudio/download/).
 
 Like Sweave documents, R Markdown documents contain both text and R code. 
 
 R Markdown documents contain three main parts:
-
-1. The YAML header, which is akin to the header in a Latex document. 
+  
+  1. The YAML header, which is akin to the header in a Latex document. 
 2. Code chunks, just like Sweave.
 3. Text, just like Sweave, but written in markdown, not Latex.
 
@@ -96,45 +94,45 @@ There are excellent [tutorials](https://rmarkdown.rstudio.com/lesson-1.html) ava
 With reportRx + Sweave .Rnw documents are first made into pdf documents, and then converted to Word documents.
 
 With R Markdown, an .Rmd document is converted to .md and then to PDF, HTML or WORD:
-![Image taken from the R Markdown Cookbook](images/workflow.png)
+  ![Image taken from the R Markdown Cookbook](images/workflow.png)
 
 ## Why Use R Markdown instead of Sweave?
 
 - No need to learn Latex!
-- Formatting is a little quicker: `# Section Header` instead of `\section{Section Header}`
+  - Formatting is a little quicker: `# Section Header` instead of `\section{Section Header}`
 - Easily output to multiple formats, quickly tweak a pdf report to make slides
 - Lots of development work is being done to support document creation in R Markdown:
   * Journal Articles & Handouts https://blog.rstudio.com/2016/03/21/r-markdown-custom-formats/
   * Xaringan Presentations https://slides.yihui.org/xaringan/#1 
   * Teaching Materials with GitBook https://cjvanlissa.github.io/gitbook-demo/
   * Websites with Blogdown https://alison.rbind.io/post/new-year-new-blogdown/
-
-`r emo::ji("right")`  If you know Sweave, picking up Markdown is easy!
-
-
-
-
-## YAML Header
-
-The top of an R Markdown document is called the YAML header (yet another markup language).
+  
+  <!--`r emo::ji("right")`-->  If you know Sweave, picking up Markdown is easy!
+  
+  
+  
+  
+  ## YAML Header
+  
+  The top of an R Markdown document is called the YAML header (yet another markup language).
 
 ```yaml
 ---
-title: "Untitled"
+  title: "Untitled"
 author: "Your Name Here"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   pdf_document:
-    latex_engine: xelatex
-  word_document:
-    fig_height: 5
-    fig_width: 7
+  latex_engine: xelatex
+word_document:
+  fig_height: 5
+fig_width: 7
 ---
-```
- 
-This is where you can specify:
+  ```
 
-- Title
+This is where you can specify:
+  
+  - Title
 - Author
 - Date
 - theme (html) or reference style document (Word)
@@ -146,8 +144,8 @@ This is where you can specify:
 Having your own *.Rmd template file with the options you most often use is helpful.
 
 A simple example is available <!--[here](simpleYAML.Rmd)--> <a href="images/simpleYAML.Rmd" target="_blank">here</a> and a more comprehensive example is <!--[here](comprehensiveYAML.Rmd)--> <a href="images/comprehensiveYAML.Rmd" target="_blank">here</a>
-
-The [ymlthis package](https://cran.microsoft.com/web/packages/ymlthis/ymlthis.pdf) can help you to write more complicated YAML headers.
+  
+  The [ymlthis package](https://cran.microsoft.com/web/packages/ymlthis/ymlthis.pdf) can help you to write more complicated YAML headers.
 
 ## Code Chunks
 
@@ -155,28 +153,28 @@ Like Sweave, R Markdown has code chunks and the options are very similar. In R M
 
 
 For example, to hide the code and suppress warnings and messages **in the output** you can set the options like this:
-
+  
   ```{r setup}
-  knitr::opts_chunk$set(echo = FALSE,warning=FALSE,message = FALSE)
-  library(reportRx)
-  ``` 
+knitr::opts_chunk$set(echo = FALSE,warning=FALSE,message = FALSE)
+library(reportRx)
+``` 
 
 Useful chunk options:
-
-- `eval = FALSE` prevents evaluation of the code. This can be useful for chunks of code that take a long time to run and you may want to run once and save to an R file. It replaces the need to source a separate R script for some code.
+  
+  - `eval = FALSE` prevents evaluation of the code. This can be useful for chunks of code that take a long time to run and you may want to run once and save to an R file. It replaces the need to source a separate R script for some code.
 
 - `echo = FALSE` hides the code, but prints any output.
 
 - `warning = FALSE` and `message = FALSE` suppress warnings
-  and messages.
+and messages.
 
 - `results = "hide"` hides the output (can be used with echo=TRUE).
 
 - `results = "asis"` treats the output of your R code as literal Markdown.
-    This is useful if you want to generate text from your R code, for example using `cat`.
-  
+This is useful if you want to generate text from your R code, for example using `cat`.
+
 - `fig.width = 5` and `fig.height = 5` set the height and width of figures
-  (in inches).
+(in inches).
 
 - `fig.cap ='A nice caption'` will print a caption beneath a figure.
 
@@ -188,25 +186,25 @@ For other options see <https://yihui.name/knitr/options>.
 You can run section of code with Cmd/Ctrl + Shift + Enter, like Sweave, or execute all the code with the green arrow at the top-right corner of the chunk.
 
 Unlike Sweave, by default code chucks are executed inline, so that you see the output immediately beneath the code chuck, like this:
-
-![](images/chunkInline.png)
+  
+  ![](images/chunkInline.png)
 
 If you prefer to have the output sent to the Console and the Plots pane instead, then you can you can change this option.
 
 In the RStudio menu:
   Tools > Global Options > R Markdown > Show output inline for all R Markdown Documents.  **Uncheck This**
   
-## Formatting
-
-R Markdown is designed for quick markup. Inserting page breaks, sections, sub-sections, figures, tables and images is very easy.
+  ## Formatting
+  
+  R Markdown is designed for quick markup. Inserting page breaks, sections, sub-sections, figures, tables and images is very easy.
 
 Formatting is very simple. More extensive formatting is possible and described [here](https://bookdown.org/yihui/bookdown/customization.html).
 
 These are the basic formatting options that will work with any output format:
-
-- `_italic_` or `*italic*` for _italic_
+  
+  - `_italic_` or `*italic*` for _italic_
 - `__bold__` or `**bold**` for **bold**    
-- `<!--  Text Comments -->` for comments that won't appear in the output
+  - `<!--  Text Comments -->` for comments that won't appear in the output
 - `[PMH Biostatistics](https://www.biostatspm.com/about-us)` for hyperlinks [PMH Biostatistics](https://www.biostatspm.com/about-us) 
 - `![cute logo](images/logo.png)` for images ![cute logo](images/logo.png)
 
@@ -493,23 +491,23 @@ rm_covsum(data=lung,
 `uvsum` will produce a single table with many univariate results
 
 
-  ```
-  rm_uvsum(response = 'Status',
-        covs=c('wt.loss','Sex','ph.ecog','meal.cal','age'),
-        data=lung,
-        CIwidth=.9)
-  ```
+```
+rm_uvsum(response = 'Status',
+         covs=c('wt.loss','Sex','ph.ecog','meal.cal','age'),
+         data=lung,
+         CIwidth=.9)
+```
 
 ```{r}
 rm_uvsum(response = 'Status',
-      covs=c('wt.loss','Sex','ph.ecog','meal.cal','age'),
-      data=lung,
-      CIwidth=.9)
+         covs=c('wt.loss','Sex','ph.ecog','meal.cal','age'),
+         data=lung,
+         CIwidth=.9)
 ```
 
 **New Functionality & Bug Fixes**
   
-- **showN** is an option to show the sample size for each variable/factor level
+  - **showN** is an option to show the sample size for each variable/factor level
 - **CIwidth** allows for differ confidence intervals to be produced
 - output
 - proper t-distribution confidence intervals for means are produced
@@ -521,10 +519,10 @@ rm_uvsum(response = 'Status',
 
 `mvsum` will return a consistently formatted table for different types of mutivariable models
 
-  ```
-  glm_fit = glm(Status~Sex+age+wt.loss,data=lung,family = 'binomial')
-  rm_mvsum(glm_fit)
-  ```
+```
+glm_fit = glm(Status~Sex+age+wt.loss,data=lung,family = 'binomial')
+rm_mvsum(glm_fit)
+```
 
 ```{r}
 glm_fit = glm(Status~Sex+age+wt.loss,data=lung,family = 'binomial')
@@ -532,9 +530,9 @@ rm_mvsum(glm_fit)
 ```
 
 **New Functionality & Bug Fixes**
-
-- **showN** is an option to show the sample size for each variable/factor level
-- **CIwidth** allows for differ confidence intervals to be produced
+  
+  - `showN` is an option to show the sample size for each variable/factor level
+- `CIwidth` allows for differ confidence intervals to be produced
 - automatically retrieve data from the model if not specified
 - fixed bug with variable names embedded in level names
 - fixed bug with centering in models
@@ -551,10 +549,10 @@ rm_mvsum(glm_fit)
 
 Plot KM and CI curves using ggplot2 with the usual reportRx arguments and a lot of options for customisation for publication-ready plots.
 
-  ```
-  ggkmcif(c("time","status"),"Sex", data=lung,fsize=10,nsize=4)
+```
+ggkmcif(c("time","status"),"Sex", data=lung,fsize=10,nsize=4)
 
-  ```
+```
 
 ```{r}
 ggkmcif(c("time","status"),"Sex", data=lung,fsize=10,nsize=4)
@@ -566,16 +564,16 @@ ggkmcif(c("time","status"),"Sex", data=lung,fsize=10,nsize=4)
 Designed to be a visualisation of `uvsum` with arguments supplied in the same manner. This goal is not publication-ready plots but rather a quick means of displaying the data to facilitate the interpretation of the `uvsum` output from.  
 
 
-  ```
-  plot_univariate(response = 'Status',
-        covs=c('Sex','ph.ecog','meal.cal','age'),
-        data=lung)
-  ```
+```
+plot_univariate(response = 'Status',
+                covs=c('Sex','ph.ecog','meal.cal','age'),
+                data=lung)
+```
 
 ```{r}
 plot_univariate(response = 'Status',
-      covs=c('Sex','ph.ecog','meal.cal','age'),
-      data=lung)
+                covs=c('Sex','ph.ecog','meal.cal','age'),
+                data=lung)
 ```
 
 
@@ -583,13 +581,13 @@ plot_univariate(response = 'Status',
 
 This will produce a forest plot of OR or RR from an object derived from glm. The risks are plotted on a log-scale, ordered from highest to lowest.
 
-  ```
-  fit = glm(Status~age+Sex+wt.loss+ph.karno+ph.ecog+pat.karno+meal.cal,
-            family='binomial',
-            data=lung)
-  forestplot2(fit, rmRef=T)
-  
-  ```
+```
+fit = glm(Status~age+Sex+wt.loss+ph.karno+ph.ecog+pat.karno+meal.cal,
+          family='binomial',
+          data=lung)
+forestplot2(fit, rmRef=T)
+
+```
 
 ```{r}
 fit = glm(Status~age+Sex+wt.loss+ph.karno+ph.ecog+pat.karno+meal.cal,
@@ -607,17 +605,17 @@ Automatically output text from survival analysis. Set the code chuck option `res
 
 !**Note:** This function may have bugs. Please let us know if you have trouble.
 
-  ```
-  rm_etsum(data = lung, response = c("time","Status"), group = 1,
-         times=c(365,720,1095), units="days")
-  
-  ```
-
-Will output this :
-
-```{r, results='asis'}
+```
 rm_etsum(data = lung, response = c("time","Status"), group = 1,
-       times=c(365,720,1095), units="days")
+         times=c(365,720,1095), units="days")
+
+```
+
+Will output this:
+  
+  ```{r, results='asis'}
+rm_etsum(data = lung, response = c("time","Status"), group = 1,
+         times=c(365,720,1095), units="days")
 
 ```
 
@@ -626,19 +624,19 @@ rm_etsum(data = lung, response = c("time","Status"), group = 1,
 This function will output a simple table nicely in any of the main R Markdown output formats, including bookdown. 
 
 Arguments:
-
-- `to_indent` row indices specifying a small indent in the first column
+  
+  - `to_indent` row indices specifying a small indent in the first column
 - `to_bold` row indices specifying which rows to bold
 - `caption` a caption to print above the table.
 
-  ```
-  library(janitor)
-  tab <- lung %>% tabyl(Status,Sex)
-  outTable(tab, 
-           to_indent=1,
-           to_bold=2,
-           caption= 'Status by Sex in the Lung data' )
-  ```
+```
+library(janitor)
+tab <- lung %>% tabyl(Status,Sex)
+outTable(tab, 
+         to_indent=1,
+         to_bold=2,
+         caption= 'Status by Sex in the Lung data' )
+```
 
 ```{r}
 library(janitor)
@@ -654,14 +652,14 @@ outTable(tab,
 Retrieve the column numbers corresponding to Excel column headers. This can be useful if variables are referred to by Excel column names in the statistical analysis plan.
 
 Example: 
-
+  
   ```
-  excelCol(A,B,BG,CC)
-  ```
+excelCol(A,B,BG,CC)
+```
 
 Returns:
-
-```{r,comment=''}
+  
+  ```{r,comment=''}
 excelCol(A,B,BG,CC)
 ```
 

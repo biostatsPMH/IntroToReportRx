@@ -4,13 +4,10 @@ tab:unnamed-chunk-3
 tab:unnamed-chunk-4
 tab:unnamed-chunk-10
 introduction
-r-markdown
 from-r-markdown-to-pdfwordhtml
 why-use-r-markdown-instead-of-sweave
-yaml-header
 code-chunks
 running-chunks
-formatting
 sections-breaks
 lists
 figures-and-tables
