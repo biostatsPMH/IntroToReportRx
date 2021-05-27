@@ -9,6 +9,8 @@ bibliography:
 csl: Vancouver.csl
 site: bookdown::bookdown_site
 output:
+  bookdown::pdf_document2:
+    latex_engine: xelatex
   bookdown::gitbook: 
     split_by: 'section'
     pandoc_args: [ "--csl", "Vancouver.csl" ]
@@ -36,7 +38,6 @@ output:
         family: sans
         size: 2
       info: no
-documentclass: krantz
 link-citations: yes
 colorlinks: yes
 graphics: yes
