@@ -75,13 +75,13 @@ R Markdown + reportRx  = More time on stats and less time on formatting <!--`r e
   
 # R Markdown 
   
-  R Markdown is a package designed for literate R programming and is part of the [RStudio IDE](https://www.rstudio.com/products/rstudio/download/).
+R Markdown is a package designed for literate R programming and is part of the [RStudio IDE](https://www.rstudio.com/products/rstudio/download/).
 
 Like Sweave documents, R Markdown documents contain both text and R code. 
 
 R Markdown documents contain three main parts:
   
-  1. The YAML header, which is akin to the header in a Latex document. 
+1. The YAML header, which is akin to the header in a Latex document. 
 2. Code chunks, just like Sweave.
 3. Text, just like Sweave, but written in markdown, not Latex.
 
@@ -99,27 +99,21 @@ With R Markdown, an .Rmd document is converted to .md and then to PDF, HTML or W
 ## Why Use R Markdown instead of Sweave?
 
 - No need to learn Latex!
-  - Formatting is a little quicker: `# Section Header` instead of `\section{Section Header}`
+- Formatting is a little quicker: `# Section Header` instead of `\section{Section Header}`
 - Easily output to multiple formats, quickly tweak a pdf report to make slides
 - Lots of development work is being done to support document creation in R Markdown:
-  * Journal Articles & Handouts https://blog.rstudio.com/2016/03/21/r-markdown-custom-formats/
-  * Xaringan Presentations https://slides.yihui.org/xaringan/#1 
-  * Teaching Materials with GitBook https://cjvanlissa.github.io/gitbook-demo/
-  * Websites with Blogdown https://alison.rbind.io/post/new-year-new-blogdown/
-  
-  <!--`r emo::ji("right")`-->  If you know Sweave, picking up Markdown is easy!
-  
-## More Output Formats
-
 - The [bookdown](https://bookdown.org/yihui/bookdown/rmarkdo) package allows you to create gitbooks (like this document) and ebooks (EPUB and MOBI), in addition to the regular HTML, Word, and PDF formats
 - The [xaringan](https://slides.yihui.org/xaringan/#1) package creates great looking presentation slides, with timers, notes, presenter mode and screen cloning
 - the [Shiny](https://shiny.rstudio.com/xar) package is great for interactive statistics and graphs
+-  [Blogdown](https://alison.rbind.io/post/new-year-new-blogdown/) for producing websites
 - OpenDocuments, html & pdf slide presentations, lecture handouts [read here for more information](https://rmarkdown.rstudio.com/lesson-9.html)  
+
   
+  `r emo::ji("right")`  If you know Sweave, picking up Markdown is easy!
   
 ## YAML Header
   
-  The top of an R Markdown document is called the YAML header (yet another markup language).
+The top of an R Markdown document is called the YAML header (yet another markup language).
 
 ```yaml
 ---
@@ -148,7 +142,7 @@ This is where you can specify:
 
 Having your own *.Rmd template file with the options you most often use is helpful.
 
-A simple example is available <!--[here](simpleYAML.Rmd)--> <a href="images/simpleYAML.Rmd" target="_blank">here</a> and a more comprehensive example is <!--[here](comprehensiveYAML.Rmd)--> <a href="images/comprehensiveYAML.Rmd" target="_blank">here</a>
+A simple example is available <!--[here](../simpleYAML.Rmd)--> <a href="images/simpleYAML.Rmd" target="_blank">here</a> and a more comprehensive example is <!--[here](comprehensiveYAML.Rmd)--> <a href="images/comprehensiveYAML.Rmd" target="_blank">here</a>
   
   The [ymlthis package](https://cran.microsoft.com/web/packages/ymlthis/ymlthis.pdf) can help you to write more complicated YAML headers.
 
@@ -199,7 +193,7 @@ If you prefer to have the output sent to the Console and the Plots pane instead,
 In the RStudio menu:
   Tools > Global Options > R Markdown > Show output inline for all R Markdown Documents.  **Uncheck This**
   
-  ## Formatting
+## Formatting
   
   R Markdown is designed for quick markup. Inserting page breaks, sections, sub-sections, figures, tables and images is very easy.
 
@@ -239,8 +233,8 @@ Create ordered or unordered lists easily. Note that there must be an empty line 
 ```
 * Unordered list
 * Item 2
-    * Nested bullets need a 4-space indent.
-    * Item 2b
+* Nested bullets need a 4-space indent.
+* Item 2b
 ```
 
 ```
@@ -573,19 +567,19 @@ ggkmcif(c("time","status"),"Sex", data=lung,fsize=10,nsize=4)
 ```
 
 
-## plot_univariate
+## plotuv
 
 Designed to be a visualisation of `uvsum` with arguments supplied in the same manner. This goal is not publication-ready plots but rather a quick means of displaying the data to facilitate the interpretation of the `uvsum` output from.  
 
 
 ```r
-plot_univariate(response = 'Status',
+plotuv(response = 'Status',
                 covs=c('Sex','ph.ecog','meal.cal','age'),
                 data=lung)
 ```
 
 ```{r}
-plot_univariate(response = 'Status',
+plotuv(response = 'Status',
                 covs=c('Sex','ph.ecog','meal.cal','age'),
                 data=lung)
 ```

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 reportRx | reportRx &amp; R Markdown</title>
-  <meta name="description" content="3 reportRx | reportRx &amp; R Markdown" />
+  <title>3.8 plotuv | reportRx &amp; R Markdown</title>
+  <meta name="description" content="3.8 plotuv | reportRx &amp; R Markdown" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 reportRx | reportRx &amp; R Markdown" />
+  <meta property="og:title" content="3.8 plotuv | reportRx &amp; R Markdown" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 reportRx | reportRx &amp; R Markdown" />
+  <meta name="twitter:title" content="3.8 plotuv | reportRx &amp; R Markdown" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="moving-references.html"/>
-<link rel="next" href="installing-reportrx.html"/>
+<link rel="prev" href="ggkmcif.html"/>
+<link rel="next" href="forestplot2.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -194,27 +194,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="reportrx" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> reportRx</h1>
-<p>reportRx has reporting functions, printing functions and plotting functions. The actual reporting functions are not called directly, but are called by the printing functions.</p>
-<p>Reporting Functions:</p>
-<ul>
-<li><a href="covsum.html#covsum">covsum</a> Used to produced Table 1 style output</li>
-<li><a href="etsum.html#etsum">etsum</a> To summarise output from a coxph model</li>
-<li><a href="uvsum.html#uvsum">uvsum</a> To combine several univariate models into a single table</li>
-<li>[ordsum] Like <code>uvsum</code> for ordinal output. May be added into uvsum one day</li>
-<li><a href="mvsum.html#mvsum">mvsum</a> To summarise multivariable model output</li>
-</ul>
-<p>Printing functions for <strong>Sweave</strong> use the prefix <code>p</code> (ie. <code>pcovsum()</code>).</p>
-<p>Printing functions for <strong>R Markdown</strong> use the prefix <code>rm_</code> (ie <code>rm_mvsum()</code>).</p>
+<div id="plotuv" class="section level2" number="3.8">
+<h2><span class="header-section-number">3.8</span> plotuv</h2>
+<p>Designed to be a visualisation of <code>uvsum</code> with arguments supplied in the same manner. This goal is not publication-ready plots but rather a quick means of displaying the data to facilitate the interpretation of the <code>uvsum</code> output from.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="plotuv.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotuv</span>(<span class="at">response =</span> <span class="st">&#39;Status&#39;</span>,</span>
+<span id="cb22-2"><a href="plotuv.html#cb22-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">covs=</span><span class="fu">c</span>(<span class="st">&#39;Sex&#39;</span>,<span class="st">&#39;ph.ecog&#39;</span>,<span class="st">&#39;meal.cal&#39;</span>,<span class="st">&#39;age&#39;</span>),</span>
+<span id="cb22-3"><a href="plotuv.html#cb22-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">data=</span>lung)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="moving-references.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="installing-reportrx.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="ggkmcif.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="forestplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

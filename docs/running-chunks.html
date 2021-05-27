@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.6 Running Chunks | reportRx &amp; R Markdown</title>
-  <meta name="description" content="2.6 Running Chunks | reportRx &amp; R Markdown" />
+  <title>2.5 Running Chunks | reportRx &amp; R Markdown</title>
+  <meta name="description" content="2.5 Running Chunks | reportRx &amp; R Markdown" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.6 Running Chunks | reportRx &amp; R Markdown" />
+  <meta property="og:title" content="2.5 Running Chunks | reportRx &amp; R Markdown" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.6 Running Chunks | reportRx &amp; R Markdown" />
+  <meta name="twitter:title" content="2.5 Running Chunks | reportRx &amp; R Markdown" />
   
   
   
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="code-chunks.html"/>
-<link rel="next" href="sections-breaks.html"/>
+<link rel="next" href="formatting.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -140,10 +140,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="from-r-markdown-to-pdfwordhtml.html"><a href="from-r-markdown-to-pdfwordhtml.html"><i class="fa fa-check"></i><b>2.1</b> From R Markdown to PDF/Word/HTML</a></li>
 <li class="chapter" data-level="2.2" data-path="why-use-r-markdown-instead-of-sweave.html"><a href="why-use-r-markdown-instead-of-sweave.html"><i class="fa fa-check"></i><b>2.2</b> Why Use R Markdown instead of Sweave?</a></li>
-<li class="chapter" data-level="2.3" data-path="more-output-formats.html"><a href="more-output-formats.html"><i class="fa fa-check"></i><b>2.3</b> More Output Formats</a></li>
-<li class="chapter" data-level="2.4" data-path="yaml-header.html"><a href="yaml-header.html"><i class="fa fa-check"></i><b>2.4</b> YAML Header</a></li>
-<li class="chapter" data-level="2.5" data-path="code-chunks.html"><a href="code-chunks.html"><i class="fa fa-check"></i><b>2.5</b> Code Chunks</a></li>
-<li class="chapter" data-level="2.6" data-path="running-chunks.html"><a href="running-chunks.html"><i class="fa fa-check"></i><b>2.6</b> Running Chunks</a></li>
+<li class="chapter" data-level="2.3" data-path="yaml-header.html"><a href="yaml-header.html"><i class="fa fa-check"></i><b>2.3</b> YAML Header</a></li>
+<li class="chapter" data-level="2.4" data-path="code-chunks.html"><a href="code-chunks.html"><i class="fa fa-check"></i><b>2.4</b> Code Chunks</a></li>
+<li class="chapter" data-level="2.5" data-path="running-chunks.html"><a href="running-chunks.html"><i class="fa fa-check"></i><b>2.5</b> Running Chunks</a></li>
+<li class="chapter" data-level="2.6" data-path="formatting.html"><a href="formatting.html"><i class="fa fa-check"></i><b>2.6</b> Formatting</a></li>
 <li class="chapter" data-level="2.7" data-path="sections-breaks.html"><a href="sections-breaks.html"><i class="fa fa-check"></i><b>2.7</b> Sections &amp; Breaks</a></li>
 <li class="chapter" data-level="2.8" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>2.8</b> Lists</a></li>
 <li class="chapter" data-level="2.9" data-path="figures-and-tables.html"><a href="figures-and-tables.html"><i class="fa fa-check"></i><b>2.9</b> Figures and Tables</a></li>
@@ -163,7 +163,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="mvsum.html"><a href="mvsum.html"><i class="fa fa-check"></i><b>3.5</b> mvsum</a></li>
 <li class="chapter" data-level="3.6" data-path="ggsurv.html"><a href="ggsurv.html"><i class="fa fa-check"></i><b>3.6</b> ggsurv</a></li>
 <li class="chapter" data-level="3.7" data-path="ggkmcif.html"><a href="ggkmcif.html"><i class="fa fa-check"></i><b>3.7</b> ggkmcif</a></li>
-<li class="chapter" data-level="3.8" data-path="plot-univariate.html"><a href="plot-univariate.html"><i class="fa fa-check"></i><b>3.8</b> plot_univariate</a></li>
+<li class="chapter" data-level="3.8" data-path="plotuv.html"><a href="plotuv.html"><i class="fa fa-check"></i><b>3.8</b> plotuv</a></li>
 <li class="chapter" data-level="3.9" data-path="forestplot2.html"><a href="forestplot2.html"><i class="fa fa-check"></i><b>3.9</b> forestplot2</a></li>
 <li class="chapter" data-level="3.10" data-path="etsum.html"><a href="etsum.html"><i class="fa fa-check"></i><b>3.10</b> etsum</a></li>
 <li class="chapter" data-level="3.11" data-path="outtable.html"><a href="outtable.html"><i class="fa fa-check"></i><b>3.11</b> outTable</a></li>
@@ -194,27 +194,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="running-chunks" class="section level2" number="2.6">
-<h2><span class="header-section-number">2.6</span> Running Chunks</h2>
+<div id="running-chunks" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Running Chunks</h2>
 <p>You can run section of code with Cmd/Ctrl + Shift + Enter, like Sweave, or execute all the code with the green arrow at the top-right corner of the chunk.</p>
 <p>Unlike Sweave, by default code chucks are executed inline, so that you see the output immediately beneath the code chuck, like this:</p>
 <p><img src="images/chunkInline.png" /></p>
 <p>If you prefer to have the output sent to the Console and the Plots pane instead, then you can you can change this option.</p>
 <p>In the RStudio menu:
 Tools &gt; Global Options &gt; R Markdown &gt; Show output inline for all R Markdown Documents. <strong>Uncheck This</strong></p>
-<p>## Formatting</p>
-<p>R Markdown is designed for quick markup. Inserting page breaks, sections, sub-sections, figures, tables and images is very easy.</p>
-<p>Formatting is very simple. More extensive formatting is possible and described <a href="https://bookdown.org/yihui/bookdown/customization.html">here</a>.</p>
-<p>These are the basic formatting options that will work with any output format:</p>
-<ul>
-<li><code>_italic_</code> or <code>*italic*</code> for <em>italic</em></li>
-<li><code>__bold__</code> or <code>**bold**</code> for <strong>bold</strong>
-<ul>
-<li><code>&lt;!--  Text Comments --&gt;</code> for comments that won’t appear in the output</li>
-</ul></li>
-<li><code>[PMH Biostatistics](https://www.biostatspm.com/about-us)</code> for hyperlinks <a href="https://www.biostatspm.com/about-us">PMH Biostatistics</a></li>
-<li><code>![cute logo](images/logo.png)</code> for images <img src="images/logo.png" alt="cute logo" /></li>
-</ul>
 </div>
             </section>
 
@@ -222,7 +209,7 @@ Tools &gt; Global Options &gt; R Markdown &gt; Show output inline for all R Mark
         </div>
       </div>
 <a href="code-chunks.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sections-breaks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="formatting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

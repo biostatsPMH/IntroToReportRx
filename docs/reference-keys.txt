@@ -7,10 +7,10 @@ introduction
 r-markdown
 from-r-markdown-to-pdfwordhtml
 why-use-r-markdown-instead-of-sweave
-more-output-formats
 yaml-header
 code-chunks
 running-chunks
+formatting
 sections-breaks
 lists
 figures-and-tables
@@ -28,7 +28,7 @@ uvsum
 mvsum
 ggsurv
 ggkmcif
-plot_univariate
+plotuv
 forestplot2
 etsum
 outtable
