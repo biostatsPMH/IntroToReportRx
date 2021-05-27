@@ -73,7 +73,7 @@ R Markdown + reportRx  = More time on stats and less time on formatting <!--`r e
 <a href="images/reportRxRMarkdownDemo.Rmd" target="_blank">A demo RMarkdown document show casing the reportRx functions is available here.</a> 
   
   
-  # R Markdown 
+# R Markdown 
   
   R Markdown is a package designed for literate R programming and is part of the [RStudio IDE](https://www.rstudio.com/products/rstudio/download/).
 
@@ -109,10 +109,15 @@ With R Markdown, an .Rmd document is converted to .md and then to PDF, HTML or W
   
   <!--`r emo::ji("right")`-->  If you know Sweave, picking up Markdown is easy!
   
+## More Output Formats
+
+- The [bookdown](https://bookdown.org/yihui/bookdown/rmarkdo) package allows you to create gitbooks (like this document) and ebooks (EPUB and MOBI), in addition to the regular HTML, Word, and PDF formats
+- The [xaringan](https://slides.yihui.org/xaringan/#1) package creates great looking presentation slides, with timers, notes, presenter mode and screen cloning
+- the [Shiny](https://shiny.rstudio.com/xar) package is great for interactive statistics and graphs
+- OpenDocuments, html & pdf slide presentations, lecture handouts [read here for more information](https://rmarkdown.rstudio.com/lesson-9.html)  
   
   
-  
-  ## YAML Header
+## YAML Header
   
   The top of an R Markdown document is called the YAML header (yet another markup language).
 
@@ -246,11 +251,11 @@ Create ordered or unordered lists easily. Note that there must be an empty line 
 
 ## Figures and Tables
 
-Plots created in code chucks will be produced in the output, as will Tables formatted by reportRx.
+Plots created in code chucks will be automatically shown in the output, as will Tables formatted by reportRx.
 
 Images not created by R can be inserted with this code: `![Optional Caption](filename.png)`
 
-If you need a table where the data **is not** in a R you can use this (colons determine alignment):
+If you need a table where the data **is not** in an R object you can use this (colons determine alignment):
 
 ```
 | Right | Left | Default | Center |
@@ -269,7 +274,7 @@ Regular Latex-style formulas can be easily written in R markdown. Use single `$`
 
 Examples: 
 
-$\beta_0 = 1.0$` for embedded inline formulas like this $\beta_0 = 1.0$
+`$\beta_0 = 1.0$` for embedded inline formulas like this $\beta_0 = 1.0$
   
 ```
 $$OR = \frac{Odds_{cases}}{Odds_{controls}}$$
@@ -291,7 +296,7 @@ Command you can use in R Markdown to output to pdf and Word:
 
 ## References
 
-In addition to the regular `word_document` and `pdf_document` output types there is a very popular package called `bookdown` that has word and pdf output formats that enable easier cross-referencing. ReportRx will produce tables that are properly formatted in all output formats. You can learn more about bookdown [here](https://bookdown.org/yihui/bookdown/)
+The popular `bookdown` package  has word and pdf output formats that enable easier cross-referencing. ReportRx will produce tables that are properly formatted in all output formats. You can learn more about bookdown [here](https://bookdown.org/yihui/bookdown/)
 
 To reference a figure, the chunk needs a name, and for fig.caption to be set and can be referenced using `\@ref(fig:speed-plot)` where `speed-plot` is the name of the chunk containing the figure. 
 Example: Figure \@ref(fig:speed-plot2) is an example of a boxplot. 
@@ -309,7 +314,7 @@ plot(x=cars$dist,y=cars$speed)
 
 To reference tables is a similar, use `\@ref(tab:speed-tab)`. If outputting to Word,  `chunk_label` needs to be specified as an argument. For HTML/PDF this can be omitted. Hopefully this will be automated for Word one day.
 
-Example: Tab \@ref(tab:speed-tab2) is an example of a table. 
+Example: Table \@ref(tab:speed-tab2) is an example of a table. 
 
   ```
   {r speed-tab}
@@ -349,6 +354,15 @@ There is now a reportRx function, `rmdBibfile` that will read through an R Markd
 
 The master bibfile can be the .bib file produced by programs like Mendeley or Zotero. 
 
+## An easy bibliography for R packages
+
+If you only want to reference R packages in your document then the `knitr` package has a function to create a bibliography of the loaded R packages.
+
+To create the `packages.bib` file  from all the loaded packages:
+
+  ```r
+  knitr::write_bib(.packages(), "packages.bib")
+  ```
 
 ## Moving References
 
@@ -356,7 +370,7 @@ By default, references are at the end of the document which can be annoying if y
 
 Use this command to place the references (this works for all output types).
 
-```
+```r
 # References
 <div id="refs"></div>` 
 ```
@@ -381,19 +395,19 @@ Printing functions for **R Markdown** use the prefix `rm_` (ie `rm_mvsum()`).
 
 To install `reportRx` from the github repository you need to install the `devtools` package: 
 
-  ```
+  ```r
   install.packages('devtools')
   ```
 
 Our most recent version, with the features presented here can then be directly downloaded from github:
 
-  ```
+  ```r
   devtools::install_github("biostatsPMH/reportRx", ref="devel")
   ```
 
 For the older stable version you can use this:
 
-  ```
+  ```r
   devtools::install_github("biostatsPMH/reportRx", ref="master")
   ```
 
@@ -402,7 +416,7 @@ For the older stable version you can use this:
 
 The sample code will use data from the `lung` dataset in the `survival` package. To run the code samples shown here requires that the lung data be loaded and mutated as follows:
 
-  ```
+  ```r
   library(tidyverse)
   library(survival)
   library(reportRx)
@@ -441,7 +455,7 @@ lung$Sex[sample(1:nrow(lung),size=10)] <- NA
 Typing `?covsum` will provide a complete description of the covsum arguments. Here the most recent changes are highlighted.
 
 
-  ```
+  ```r
   rm_covsum(data=lung,
          covs=c('Status','wt.loss','OneLevelFactor'),
          digits=2,
@@ -491,7 +505,7 @@ rm_covsum(data=lung,
 `uvsum` will produce a single table with many univariate results
 
 
-```
+```r
 rm_uvsum(response = 'Status',
          covs=c('wt.loss','Sex','ph.ecog','meal.cal','age'),
          data=lung,
@@ -519,7 +533,7 @@ rm_uvsum(response = 'Status',
 
 `mvsum` will return a consistently formatted table for different types of mutivariable models
 
-```
+```r
 glm_fit = glm(Status~Sex+age+wt.loss,data=lung,family = 'binomial')
 rm_mvsum(glm_fit)
 ```
@@ -549,7 +563,7 @@ rm_mvsum(glm_fit)
 
 Plot KM and CI curves using ggplot2 with the usual reportRx arguments and a lot of options for customisation for publication-ready plots.
 
-```
+```r
 ggkmcif(c("time","status"),"Sex", data=lung,fsize=10,nsize=4)
 
 ```
@@ -564,7 +578,7 @@ ggkmcif(c("time","status"),"Sex", data=lung,fsize=10,nsize=4)
 Designed to be a visualisation of `uvsum` with arguments supplied in the same manner. This goal is not publication-ready plots but rather a quick means of displaying the data to facilitate the interpretation of the `uvsum` output from.  
 
 
-```
+```r
 plot_univariate(response = 'Status',
                 covs=c('Sex','ph.ecog','meal.cal','age'),
                 data=lung)
@@ -581,7 +595,7 @@ plot_univariate(response = 'Status',
 
 This will produce a forest plot of OR or RR from an object derived from glm. The risks are plotted on a log-scale, ordered from highest to lowest.
 
-```
+```r
 fit = glm(Status~age+Sex+wt.loss+ph.karno+ph.ecog+pat.karno+meal.cal,
           family='binomial',
           data=lung)
@@ -603,9 +617,8 @@ forestplot2(fit, rmRef=T)
 
 Automatically output text from survival analysis. Set the code chuck option `results='asis'`.
 
-!**Note:** This function may have bugs. Please let us know if you have trouble.
 
-```
+```r
 rm_etsum(data = lung, response = c("time","Status"), group = 1,
          times=c(365,720,1095), units="days")
 
@@ -613,7 +626,7 @@ rm_etsum(data = lung, response = c("time","Status"), group = 1,
 
 Will output this:
   
-  ```{r, results='asis'}
+```{r, results='asis'}
 rm_etsum(data = lung, response = c("time","Status"), group = 1,
          times=c(365,720,1095), units="days")
 
@@ -629,7 +642,7 @@ Arguments:
 - `to_bold` row indices specifying which rows to bold
 - `caption` a caption to print above the table.
 
-```
+```r
 library(janitor)
 tab <- lung %>% tabyl(Status,Sex)
 outTable(tab, 
@@ -653,13 +666,13 @@ Retrieve the column numbers corresponding to Excel column headers. This can be u
 
 Example: 
   
-  ```
+```r
 excelCol(A,B,BG,CC)
 ```
 
 Returns:
   
-  ```{r,comment=''}
+```{r,comment=''}
 excelCol(A,B,BG,CC)
 ```
 

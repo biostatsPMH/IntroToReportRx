@@ -4,8 +4,11 @@ tab:unnamed-chunk-3
 tab:unnamed-chunk-4
 tab:unnamed-chunk-10
 introduction
+r-markdown
 from-r-markdown-to-pdfwordhtml
 why-use-r-markdown-instead-of-sweave
+more-output-formats
+yaml-header
 code-chunks
 running-chunks
 sections-breaks
@@ -15,6 +18,7 @@ formulas
 references
 citations
 creating-a-bibliography
+an-easy-bibliography-for-r-packages
 moving-references
 reportrx
 installing-reportrx

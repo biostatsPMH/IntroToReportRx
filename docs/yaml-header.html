@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.3 YAML Header | reportRx &amp; R Markdown</title>
-  <meta name="description" content="2.3 YAML Header | reportRx &amp; R Markdown" />
+  <title>2.4 YAML Header | reportRx &amp; R Markdown</title>
+  <meta name="description" content="2.4 YAML Header | reportRx &amp; R Markdown" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.3 YAML Header | reportRx &amp; R Markdown" />
+  <meta property="og:title" content="2.4 YAML Header | reportRx &amp; R Markdown" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.3 YAML Header | reportRx &amp; R Markdown" />
+  <meta name="twitter:title" content="2.4 YAML Header | reportRx &amp; R Markdown" />
   
   
   
@@ -31,7 +31,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="why-use-r-markdown-instead-of-sweave.html"/>
+<link rel="prev" href="more-output-formats.html"/>
 <link rel="next" href="code-chunks.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -140,10 +140,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="from-r-markdown-to-pdfwordhtml.html"><a href="from-r-markdown-to-pdfwordhtml.html"><i class="fa fa-check"></i><b>2.1</b> From R Markdown to PDF/Word/HTML</a></li>
 <li class="chapter" data-level="2.2" data-path="why-use-r-markdown-instead-of-sweave.html"><a href="why-use-r-markdown-instead-of-sweave.html"><i class="fa fa-check"></i><b>2.2</b> Why Use R Markdown instead of Sweave?</a></li>
-<li class="chapter" data-level="2.3" data-path="yaml-header.html"><a href="yaml-header.html"><i class="fa fa-check"></i><b>2.3</b> YAML Header</a></li>
-<li class="chapter" data-level="2.4" data-path="code-chunks.html"><a href="code-chunks.html"><i class="fa fa-check"></i><b>2.4</b> Code Chunks</a></li>
-<li class="chapter" data-level="2.5" data-path="running-chunks.html"><a href="running-chunks.html"><i class="fa fa-check"></i><b>2.5</b> Running Chunks</a></li>
-<li class="chapter" data-level="2.6" data-path="formatting.html"><a href="formatting.html"><i class="fa fa-check"></i><b>2.6</b> Formatting</a></li>
+<li class="chapter" data-level="2.3" data-path="more-output-formats.html"><a href="more-output-formats.html"><i class="fa fa-check"></i><b>2.3</b> More Output Formats</a></li>
+<li class="chapter" data-level="2.4" data-path="yaml-header.html"><a href="yaml-header.html"><i class="fa fa-check"></i><b>2.4</b> YAML Header</a></li>
+<li class="chapter" data-level="2.5" data-path="code-chunks.html"><a href="code-chunks.html"><i class="fa fa-check"></i><b>2.5</b> Code Chunks</a></li>
+<li class="chapter" data-level="2.6" data-path="running-chunks.html"><a href="running-chunks.html"><i class="fa fa-check"></i><b>2.6</b> Running Chunks</a></li>
 <li class="chapter" data-level="2.7" data-path="sections-breaks.html"><a href="sections-breaks.html"><i class="fa fa-check"></i><b>2.7</b> Sections &amp; Breaks</a></li>
 <li class="chapter" data-level="2.8" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>2.8</b> Lists</a></li>
 <li class="chapter" data-level="2.9" data-path="figures-and-tables.html"><a href="figures-and-tables.html"><i class="fa fa-check"></i><b>2.9</b> Figures and Tables</a></li>
@@ -151,7 +151,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.11" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>2.11</b> References</a></li>
 <li class="chapter" data-level="2.12" data-path="citations.html"><a href="citations.html"><i class="fa fa-check"></i><b>2.12</b> Citations</a></li>
 <li class="chapter" data-level="2.13" data-path="creating-a-bibliography.html"><a href="creating-a-bibliography.html"><i class="fa fa-check"></i><b>2.13</b> Creating a bibliography</a></li>
-<li class="chapter" data-level="2.14" data-path="moving-references.html"><a href="moving-references.html"><i class="fa fa-check"></i><b>2.14</b> Moving References</a></li>
+<li class="chapter" data-level="2.14" data-path="an-easy-bibliography-for-r-packages.html"><a href="an-easy-bibliography-for-r-packages.html"><i class="fa fa-check"></i><b>2.14</b> An easy bibliography for R packages</a></li>
+<li class="chapter" data-level="2.15" data-path="moving-references.html"><a href="moving-references.html"><i class="fa fa-check"></i><b>2.15</b> Moving References</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="reportrx.html"><a href="reportrx.html"><i class="fa fa-check"></i><b>3</b> reportRx</a>
 <ul>
@@ -193,19 +194,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="yaml-header" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> YAML Header</h2>
+<div id="yaml-header" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> YAML Header</h2>
 <p>The top of an R Markdown document is called the YAML header (yet another markup language).</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="yaml-header.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb1-2"><a href="yaml-header.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Untitled&quot;</span></span>
+<span id="cb1-2"><a href="yaml-header.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Untitled&quot;</span></span>
 <span id="cb1-3"><a href="yaml-header.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Your Name Here&quot;</span></span>
 <span id="cb1-4"><a href="yaml-header.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;27 May, 2021&quot;</span></span>
 <span id="cb1-5"><a href="yaml-header.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">output</span><span class="kw">:</span></span>
 <span id="cb1-6"><a href="yaml-header.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf_document</span><span class="kw">:</span></span>
-<span id="cb1-7"><a href="yaml-header.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">latex_engine</span><span class="kw">:</span><span class="at"> xelatex</span></span>
-<span id="cb1-8"><a href="yaml-header.html#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">word_document</span><span class="kw">:</span></span>
-<span id="cb1-9"><a href="yaml-header.html#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig_height</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
-<span id="cb1-10"><a href="yaml-header.html#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig_width</span><span class="kw">:</span><span class="at"> </span><span class="dv">7</span></span>
+<span id="cb1-7"><a href="yaml-header.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">latex_engine</span><span class="kw">:</span><span class="at"> xelatex</span></span>
+<span id="cb1-8"><a href="yaml-header.html#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">word_document</span><span class="kw">:</span></span>
+<span id="cb1-9"><a href="yaml-header.html#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">fig_height</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
+<span id="cb1-10"><a href="yaml-header.html#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">fig_width</span><span class="kw">:</span><span class="at"> </span><span class="dv">7</span></span>
 <span id="cb1-11"><a href="yaml-header.html#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div>
 <p>This is where you can specify:</p>
 <ul>
@@ -227,7 +228,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="why-use-r-markdown-instead-of-sweave.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="more-output-formats.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="code-chunks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -267,7 +268,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["book.pdf", "book.epub"],
+"download": ["_main.pdf"],
 "toc": {
 "collapse": "none",
 "toc_depth": 3,
