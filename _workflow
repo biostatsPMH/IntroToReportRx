@@ -5,10 +5,14 @@ update the book with this command in the console: bookdown::render_book("index.r
 
 2. Push the commit in the main branch to github
 
-3. Push the rendered book to the gh-pages branch on the the remote repository by entering this into the Terminal:
-
+3. Push the rendered book to the gh-pages branch on the the remote repository by entering this into the Terminal
 git subtree push --prefix _book origin gh-pages
 
+If that fails:
+git push origin `git subtree split --prefix _book main`:gh-pages --force
+
+If that fails:
+manually upload the contents of the _book directory (including all subfolders) to the gh-pages branch of the IntroToReportRx repository.
 
 Notes:
 make sure that an empty .nojekyll file exists in the gh-pages branch

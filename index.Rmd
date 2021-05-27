@@ -66,7 +66,7 @@ There are three basic types of functions:
 - tabular reporting functions (`covsum`,`uvsum`,`mvvsum`,`ordsum`)
 - wrappers for printing in Sweave (`pcovsum`,`puvsum`,`pmvsum`) 
 - wrappers for printing in RMarkdown (`rm_covsum`,`rm_uvsum`,`rm_mvsum`)
-- plotting functions (`ggsurv`,`plotunivariate`,`forestplot`,`riskplot`)
+- plotting functions (`ggkmcif`,`plotunivariate`,`forestplot`,`riskplot`)
 
 R Markdown + reportRx  = More time on stats and less time on formatting `r emo::ji("smile")` 
 
@@ -378,6 +378,26 @@ Printing functions for **Sweave** use the prefix `p` (ie. `pcovsum()`).
 
 Printing functions for **R Markdown** use the prefix `rm_` (ie `rm_mvsum()`).
 
+## installing reportRx
+
+To install `reportRx` from the github repository you need to install the `devtools` package: 
+
+  ```
+  install.packages('devtools')
+  ```
+
+Our most recent version, with the features presented here can then be directly downloaded from github:
+
+  ```
+  devtools::install_github("biostatsPMH/reportRx", ref="devel")
+  ```
+
+For the older stable version you can use this:
+
+  ```
+  devtools::install_github("biostatsPMH/reportRx", ref="master")
+  ```
+
 
 ## lung data
 
@@ -646,17 +666,18 @@ excelCol(A,B,BG,CC)
 
 # Github
 
-(reportRx)[https://github.com/biostatsPMH/reportRx] and (this documentation)[https://github.com/biostatsPMH/IntroToReportRx] are available on the PMH Biostats Github page, along with Jessica's (swimmplot package)[https://github.com/biostatsPMH/swimplot].
+[reportRx](https://github.com/biostatsPMH/reportRx) and [this documentation](https://github.com/biostatsPMH/IntroToReportRx) are available on the PMH Biostats Github page, along with Jessica's [swimmplot package](https://github.com/biostatsPMH/swimplot).
 
 Anyone can copy or download code from the git repository, without fear of deleting anything.
 
 ![](images/github.png)
 
+
 ## Help us Improve
 
 If you find a bug or would like to request a new feature you can [log an issue](https://github.com/biostatsPMH/reportRx/issues)
 
-![](images/git_hub_add.png)
+![](images/git_add.png)
 
 ## Github Account
 
