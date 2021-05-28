@@ -68,7 +68,7 @@ There are four basic types of functions:
 - wrappers for printing in RMarkdown (`rm_covsum`,`rm_uvsum`,`rm_mvsum`)
 - plotting functions (`ggkmcif`,`plotunivariate`,`forestplot`,`riskplot`)
 
-R Markdown + reportRx  = More time on stats and less time on formatting <!--`r emo::ji("smile")` -->
+R Markdown + reportRx  = More time on stats and less time on formatting `r emo::ji("smile")` 
 
 <a href="images/reportRxRMarkdownDemo.Rmd" target="_blank">A demo RMarkdown document show casing the reportRx functions is available here.</a> 
   
