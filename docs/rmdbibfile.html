@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.10 Formulas | reportRx &amp; R Markdown</title>
-  <meta name="description" content="2.10 Formulas | reportRx &amp; R Markdown" />
+  <title>3.13 rmdBibfile | reportRx &amp; R Markdown</title>
+  <meta name="description" content="3.13 rmdBibfile | reportRx &amp; R Markdown" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.10 Formulas | reportRx &amp; R Markdown" />
+  <meta property="og:title" content="3.13 rmdBibfile | reportRx &amp; R Markdown" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.10 Formulas | reportRx &amp; R Markdown" />
+  <meta name="twitter:title" content="3.13 rmdBibfile | reportRx &amp; R Markdown" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="figures-and-tables.html"/>
-<link rel="next" href="references.html"/>
+<link rel="prev" href="excelcol.html"/>
+<link rel="next" href="github.html"/>
 <script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -220,30 +220,22 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="formulas" class="section level2" number="2.10">
-<h2><span class="header-section-number">2.10</span> Formulas</h2>
-<p>Regular Latex-style formulas can be easily written in R markdown. Use single <code>$</code> for inline expressions and <code>$$</code> for enclosing standalone expressions.</p>
-<p>Examples:</p>
-<p><code>$\beta_0 = 1.0$</code> for embedded inline formulas like this <span class="math inline">\(\beta_0 = 1.0\)</span></p>
-<pre><code>$$OR = \frac{Odds_{cases}}{Odds_{controls}}$$</code></pre>
-<p><span class="math display">\[OR = \frac{Odds_{cases}}{Odds_{controls}}\]</span></p>
-<p>More details and examples of how to write matrices are <a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#math-expressions">available here</a>.</p>
-<!--
-## Using Latex
-R Markdown is designed to be quicker and easier than Latex and to enable output to multiple formats from a single source document.  You can use Latex code in R Markdown, but a lot of it may not work if you are outputting to a Word Document.  [More details on Latex in R Markdown are available here.](https://bookdown.org/yihui/rmarkdown-cookbook/latex-output.html)
-
-Command you can use in R Markdown to output to pdf and Word:
-
--  `\newpage` to create a pagebreak (if you are running an up to date version of knitr)
--->
+<div id="rmdbibfile" class="section level2" number="3.13">
+<h2><span class="header-section-number">3.13</span> rmdBibfile</h2>
+<p>This function will extract references in the current file from a master bib file and save them to a local bib file. The function works well with Mendeley library *.bib master files. If R packages are referenced in the document these will also be included in the output bib file.</p>
+<p>R packages can be cited by using the syntax <code>[@R-packagename]</code> for example: <code>[@R-reportRx]</code> for the <code>reportRx</code> package and <code>[@R-base]</code> for the R language itself.</p>
+<p>Bib file entries can be cited using <code>[@CitationKey</code>] where <code>CitationKey</code> is the entry identifier in the *.bib file.</p>
+<p>Example</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="rmdbibfile.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rmdBibfile</span>(<span class="at">bibfile =</span> <span class="st">&#39;../../Mendeley/masterbibfile.bib&#39;</span>,<span class="at">outfile=</span><span class="st">&#39;local.bib&#39;</span>)</span></code></pre></div>
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="figures-and-tables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="excelcol.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="github.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

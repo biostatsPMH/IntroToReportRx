@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.10 etsum | reportRx &amp; R Markdown</title>
   <meta name="description" content="3.10 etsum | reportRx &amp; R Markdown" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.10 etsum | reportRx &amp; R Markdown" />
   <meta property="og:type" content="book" />
@@ -21,10 +21,10 @@
   
   
 
-<meta name="author" content="Princess Margaret Biostatistics" />
+<meta name="author" content="Lisa Avery, Princess Margaret Biostatistics" />
 
 
-<meta name="date" content="2021-05-27" />
+<meta name="date" content="2021-07-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="forestplot2.html"/>
 <link rel="next" href="outtable.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -119,6 +121,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 </head>
 
 <body>
@@ -168,6 +193,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.10" data-path="etsum.html"><a href="etsum.html"><i class="fa fa-check"></i><b>3.10</b> etsum</a></li>
 <li class="chapter" data-level="3.11" data-path="outtable.html"><a href="outtable.html"><i class="fa fa-check"></i><b>3.11</b> outTable</a></li>
 <li class="chapter" data-level="3.12" data-path="excelcol.html"><a href="excelcol.html"><i class="fa fa-check"></i><b>3.12</b> excelCol</a></li>
+<li class="chapter" data-level="3.13" data-path="rmdbibfile.html"><a href="rmdbibfile.html"><i class="fa fa-check"></i><b>3.13</b> rmdBibfile</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>4</b> Github</a>
 <ul>
@@ -200,7 +226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="etsum.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_etsum</span>(<span class="at">data =</span> lung, <span class="at">response =</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>,<span class="st">&quot;Status&quot;</span>), <span class="at">group =</span> <span class="dv">1</span>,</span>
 <span id="cb24-2"><a href="etsum.html#cb24-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">times=</span><span class="fu">c</span>(<span class="dv">365</span>,<span class="dv">720</span>,<span class="dv">1095</span>), <span class="at">units=</span><span class="st">&quot;days&quot;</span>)</span></code></pre></div>
 <p>Will output this:</p>
-<p>There are 228 patients. There were 165 (72%) events. The median and range of the follow-up times is 255.5 (5-1022) days. The KM median event time is 376.3 days with 95% confidence Interval (645.7,883). The first and last event times occurred at 5 and 883 days respectively. The 365,720,883,365,720 and 883 day probabilities of ‘survival’ and their 95% confidence intervals are (34-49), (8-20), (2-12), (52-67), (82-93) and (91-100) percent.</p>
+<p><strong>NOTE:</strong> This function currently accepts only integer response variables.</p>
 </div>
             </section>
 
@@ -231,6 +257,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": false
 },
 "fontsettings": {

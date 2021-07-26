@@ -1,0 +1,221 @@
+---
+knit: (
+  function(inputFile, encoding) { 
+
+    title <- 'Demo Word Report'
+
+    rmarkdown::render( 
+      input       = inputFile, 
+      encoding    = encoding, 
+      params      = list(doc_title = title),      
+      output_file = paste(title, format(Sys.time(), '%d_%b_%Y'),sep='_')) })
+params: 
+  doc_title:
+    input: text
+    label: Title and filename
+    value: 'Filled above'
+title:  "`r params$doc_title`"
+author: "Lisa Avery"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  word_document:
+    reference_docx: wordTemplate.docx
+    fig_height: 5
+    fig_width: 7
+  pdf_document:
+    fig_height: 5
+    fig_width: 7  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,warning=FALSE,message = FALSE)
+library(tidyverse)
+library(knitr)
+library(reportRx)
+library(survival) 
+library(xtable)
+library(aod)
+
+file_type='word' # or change to anything else for latex/pdf
+
+
+# function to print table to word
+printTable <- function(tab,doc_format='word'){
+if (doc_format=='word'){
+  for (j in 1:ncol(tab)){
+  to_bold = grep('textbf',tab[[j]])  
+  tab[[j]] <- gsub('~','&nbsp;',tab[[j]])
+  tab[[j]] <- gsub('textbf','',tab[[j]])
+  tab[[j]] <- gsub('[\\]','',tab[[j]])
+  tab[[j]] <- gsub('[{]','',tab[[j]])
+  tab[[j]] <- gsub('[}]','',tab[[j]])
+  tab[[j]] <- gsub('[$]','',tab[[j]])
+  tab[[j]][to_bold] <- paste0('**',tab[[j]][to_bold],'**')
+  }
+}
+kable(tab, booktabs=F,
+      align = paste(c('l',rep('r',ncol(tab)-1)),collapse = '',sep=''))
+}
+
+#  redefine petsum if output is to word
+if (file_type=='word'){
+  orig_function <- petsum
+  petsum <- function(data, response, group = 1, times = c(12, 14), units = "months"){
+    new.out <- capture.output(orig_function(data, response, group , times , units ))
+  new.out <- gsub('textbf','**',new.out)
+  new.out <- gsub('[\\]','',new.out)
+  new.out <- gsub('[{]','',new.out)
+  new.out <- gsub('[}]','**',new.out)
+  new.out <- gsub('[*][*][*][*]','',new.out)
+ 
+  for (i in 1:length(new.out)) cat(new.out[[i]],'\n')
+  }
+}
+
+```
+
+# Rmarkdown
+Code is contained in chunks, as with sweave. You can include code chunks with the keyboard shortcut Ctrl + Alt + I (OS X: Cmd + Option + I). Chunk options are similar to sweave:
+Many different options to include there, a few relevant ones are:
+- **include:** TRUE or FALSE, if FALSE it prevents code and results from appearing in the finished file. R Markdown still runs the code in the chunk, and the results can be used by other chunks 
+- **echo**: can take TRUE or FALSE, whether the R code should be printed or not
+- **message**: TRUE or FALSE, indicates whether any messages from the code should be printed.
+- **results**: character string with one of 'markup', 'asis', 'hold' or 'hide'  
+- **warnings**: TRUE or FALSE, indicates whether any warnings from the code should be printed.
+
+# Sample Data
+
+Here is the lung data:
+```{r}
+str(lung)
+```
+
+Make some changes to the variables:
+```{r, echo=T}
+# lung$Sex <- factor(sapply(lung$sex,function(s){
+#   if(s==1) return("Male")
+#   if(s==2) return("Female")
+# }))
+# lung$Sex <- relevel(lung$Sex,ref="Male")
+# 
+# lung$ECOG <- factor(sapply(lung$ph.ecog,function(s){
+#   if( is.na(s)) return(NA)
+#   if( s %in% c(0,1) ) return("0-1")
+#   if( s %in% c(2,3) ) return("2-3")
+# }))
+# 
+# lung$status_0_1 <- ifelse(lung$status==2,1,0)
+
+# In the tidyverse
+lung <- lung %>%
+  mutate(
+    Sex = relevel(factor(if_else(sex==1,'Male','Female')),ref = 'Male'),
+    ECOG = factor(case_when(
+      ph.ecog %in% c(1,0) ~'0-1',
+      ph.ecog %in% c(2,3) ~'2-3'
+    )),
+    status_0_1 =if_else(lung$status==2,1,0)
+  )
+```
+
+# Results
+
+## Tables
+
+Table 1 for males vs females
+```{r}
+tbl1<-covsum(data = lung, covs = c('age','ECOG','meal.cal','wt.loss'), maincov = "Sex")
+
+printTable(tbl1)
+```
+
+
+Specify the test for continuous and categorical variable separately. Default options are 'rank-sum' and 'Chi-squared' test for continuous and categorical, respectively. I also added a flag to display interquantile ranges as opposed to min and max in summarizing continuous variables.
+
+```{r cat-and-continuous}
+tbl2 <- covsum(data =lung, covs = c('age','ECOG','meal.cal','wt.loss'), maincov = "Sex",
+        IQR = TRUE, testcont = "ANOVA", testcat = "Fisher")
+printTable(tbl2)
+```
+
+
+Combining Tables
+```{r}
+t1 = covsum(data = lung, covs = c('age','meal.cal','wt.loss'), maincov = "Sex")
+
+t2 = covsum(data = lung, covs = c('ECOG'), maincov = "Sex", testcat = "Fisher")
+
+printTable(rbind(t1,t2))
+```
+
+
+## Summarizing regression models
+There are two ways in which we can summarize regression models: (1) one variable at a time and (2) under a multivariable model.
+
+Currently, the supported regression models are: "linear", "logistic", "coxph", "crr", and "boxcox". If option "type" is not provided, the function will try to guess the model based on the outcome provided.
+
+### Univariable
+Logistic
+```{r}
+tblLM <- uvsum(response = "status_0_1", covs = c('Sex', 'age','ECOG','meal.cal','wt.loss'), data = lung)
+printTable(tblLM)
+```
+
+
+
+Cox PH
+```{r}
+tblPH <- uvsum(response = c("time","status_0_1"), covs = c('Sex','age','ECOG','meal.cal','wt.loss'), data = lung)
+printTable(tblPH)
+```
+
+### Multivariable
+
+Logistic
+```{r}
+log_fit <- glm(status_0_1 ~ Sex + ECOG + meal.cal + wt.loss, data = lung, family=binomial)
+printTable( mvsum(model = log_fit, data = lung))
+```
+
+
+Logistic with interaction
+```{r}
+log_fit1 <- glm(status_0_1 ~ Sex*meal.cal + age + ECOG + wt.loss, data = lung, family=binomial)
+printTable(mvsum(model = log_fit1, data = lung))
+
+```
+
+
+Cox PH with interaction
+```{r}
+cox_fit1 <- coxph(Surv(time,status_0_1) ~ Sex*meal.cal + age + ECOG + wt.loss, data = lung)
+printTable(mvsum(model = cox_fit1, data = lung))
+
+```
+
+## KM plots
+```{r ungrouped-km}
+plotkm(data = lung, response = c("time","status_0_1"), group = 1, 
+       pos = "bottomleft", units = "days", CI = F, legend = T, title = "")
+
+```
+
+```{r grouped-km}
+plotkm(data = lung, response = c("time","status_0_1"), group = "Sex", 
+       pos = "bottomleft", units = "days", CI = F, legend = T, title = "")
+
+```
+
+It is also possible to plot cumulative incidence plots with function *plotci*.
+
+## Others
+
+An "automatic" summary of a survival object can be obtained as follows:
+```{r, results='asis'}
+petsum(data = lung, response = c("time","status_0_1"), group = 1,
+       times=c(365,720,1095), units="days")
+petsum(data = lung, response = c("time","status_0_1"), group = 'Sex',
+       times=c(365,720,1095), units="days")
+
+```
+

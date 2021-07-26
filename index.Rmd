@@ -1,7 +1,7 @@
 
 ---
 title: "reportRx & R Markdown"
-author: "Princess Margaret Biostatistics"
+author: "Lisa Avery, Princess Margaret Biostatistics"
 date: "`r Sys.Date()`"
 rmd_files: ["index.Rmd"]
 bibliography:
@@ -11,9 +11,6 @@ site: bookdown::bookdown_site
 header-includes:
   - \usepackage{tabu}
 output:
-  bookdown::pdf_book:
-    latex_engine: xelatex
-    toc: yes
   bookdown::gitbook: 
     split_by: 'section'
     pandoc_args: [ "--csl", "Vancouver.csl" ]
@@ -620,11 +617,14 @@ rm_etsum(data = lung, response = c("time","Status"), group = 1,
 
 Will output this:
   
-```{r, results='asis'}
-rm_etsum(data = lung, response = c("time","Status"), group = 1,
+
+```{r, results='asis',eval=F}
+rm_etsum(data = lung, response = c("time","status"), group = 1,
          times=c(365,720,1095), units="days")
 
 ```
+
+**NOTE:**  This function currently accepts only integer response variables.
 
 ## outTable
 
@@ -669,6 +669,21 @@ Returns:
 ```{r,comment=''}
 excelCol(A,B,BG,CC)
 ```
+
+## rmdBibfile
+
+This function will extract references in the current file from a master bib file and save them to a local bib file. The function works well with Mendeley library *.bib master files. If R packages are referenced in the document these will also be included in the output bib file.
+
+R packages can be cited by using the syntax `[@R-packagename]` for example: `[@R-reportRx]` for the `reportRx` package and `[@R-base]` for the R language itself.
+
+Bib file entries can be cited using `[@CitationKey`] where `CitationKey` is the entry identifier in the *.bib file.
+
+Example
+
+```r
+rmdBibfile(bibfile = '../../Mendeley/masterbibfile.bib',outfile='local.bib')
+```
+
 
 # Github
 

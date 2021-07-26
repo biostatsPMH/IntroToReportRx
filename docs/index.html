@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>reportRx &amp; R Markdown</title>
   <meta name="description" content="reportRx &amp; R Markdown" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="reportRx &amp; R Markdown" />
   <meta property="og:type" content="book" />
@@ -21,10 +21,10 @@
   
   
 
-<meta name="author" content="Princess Margaret Biostatistics" />
+<meta name="author" content="Lisa Avery, Princess Margaret Biostatistics" />
 
 
-<meta name="date" content="2021-05-27" />
+<meta name="date" content="2021-07-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 
 <link rel="next" href="r-markdown.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -119,6 +121,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 </head>
 
 <body>
@@ -168,6 +193,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.10" data-path="etsum.html"><a href="etsum.html"><i class="fa fa-check"></i><b>3.10</b> etsum</a></li>
 <li class="chapter" data-level="3.11" data-path="outtable.html"><a href="outtable.html"><i class="fa fa-check"></i><b>3.11</b> outTable</a></li>
 <li class="chapter" data-level="3.12" data-path="excelcol.html"><a href="excelcol.html"><i class="fa fa-check"></i><b>3.12</b> excelCol</a></li>
+<li class="chapter" data-level="3.13" data-path="rmdbibfile.html"><a href="rmdbibfile.html"><i class="fa fa-check"></i><b>3.13</b> rmdBibfile</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>4</b> Github</a>
 <ul>
@@ -196,8 +222,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">reportRx &amp; R Markdown</h1>
-<p class="author"><em>Princess Margaret Biostatistics</em></p>
-<p class="date"><em>2021-05-27</em></p>
+<p class="author"><em>Lisa Avery, Princess Margaret Biostatistics</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2021-07-26</em></p>
 </div>
 <div id="introduction" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Introduction</h1>
@@ -210,7 +236,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>wrappers for printing in RMarkdown (<code>rm_covsum</code>,<code>rm_uvsum</code>,<code>rm_mvsum</code>)</li>
 <li>plotting functions (<code>ggkmcif</code>,<code>plotunivariate</code>,<code>forestplot</code>,<code>riskplot</code>)</li>
 </ul>
-<p>R Markdown + reportRx = More time on stats and less time on formatting <!--😄 --></p>
+<p>R Markdown + reportRx = More time on stats and less time on formatting 😄</p>
 <p><a href="images/reportRxRMarkdownDemo.Rmd" target="_blank">A demo RMarkdown document show casing the reportRx functions is available here.</a></p>
 </div>
             </section>
@@ -242,6 +268,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": false
 },
 "fontsettings": {

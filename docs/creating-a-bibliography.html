@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.13 Creating a bibliography | reportRx &amp; R Markdown</title>
   <meta name="description" content="2.13 Creating a bibliography | reportRx &amp; R Markdown" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.13 Creating a bibliography | reportRx &amp; R Markdown" />
   <meta property="og:type" content="book" />
@@ -21,10 +21,10 @@
   
   
 
-<meta name="author" content="Princess Margaret Biostatistics" />
+<meta name="author" content="Lisa Avery, Princess Margaret Biostatistics" />
 
 
-<meta name="date" content="2021-05-27" />
+<meta name="date" content="2021-07-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="citations.html"/>
 <link rel="next" href="an-easy-bibliography-for-r-packages.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -119,6 +121,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 </head>
 
 <body>
@@ -168,6 +193,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.10" data-path="etsum.html"><a href="etsum.html"><i class="fa fa-check"></i><b>3.10</b> etsum</a></li>
 <li class="chapter" data-level="3.11" data-path="outtable.html"><a href="outtable.html"><i class="fa fa-check"></i><b>3.11</b> outTable</a></li>
 <li class="chapter" data-level="3.12" data-path="excelcol.html"><a href="excelcol.html"><i class="fa fa-check"></i><b>3.12</b> excelCol</a></li>
+<li class="chapter" data-level="3.13" data-path="rmdbibfile.html"><a href="rmdbibfile.html"><i class="fa fa-check"></i><b>3.13</b> rmdBibfile</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>4</b> Github</a>
 <ul>
@@ -232,6 +258,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": false
 },
 "fontsettings": {
