@@ -522,17 +522,18 @@ rm_uvsum(response = 'Status',
 
 ## mvsum
 
-`mvsum` will return a consistently formatted table for different types of mutivariable models
+`mvsum` will return a consistently formatted table for different types of mutivariable models. This function now supports interaction terms
 
 ```r
-glm_fit = glm(Status~Sex+age+wt.loss,data=lung,family = 'binomial')
+glm_fit = glm(Status~Sex:age+wt.loss,data=lung,family = 'binomial')
 rm_mvsum(glm_fit)
 ```
 
 ```{r}
-glm_fit = glm(Status~Sex+age+wt.loss,data=lung,family = 'binomial')
+glm_fit = glm(Status~Sex:age+wt.loss,data=lung,family = 'binomial')
 rm_mvsum(glm_fit)
 ```
+
 
 **New Functionality & Bug Fixes**
   
@@ -544,6 +545,7 @@ rm_mvsum(glm_fit)
 - added support for polr ordinal regression models
 - updated CIs to use t-test instead of Z-test for means
 - fixed treatment of glm objects to properly handle linear, binomial and poisson models
+- fix to allow interaction terms in the model
 
 ## ggsurv
 
