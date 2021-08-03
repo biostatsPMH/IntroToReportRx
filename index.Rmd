@@ -634,7 +634,7 @@ This function will output a simple table nicely in any of the main R Markdown ou
 
 Arguments:
   
-  - `to_indent` row indices specifying a small indent in the first column
+- `to_indent` row indices specifying a small indent in the first column
 - `to_bold` row indices specifying which rows to bold
 - `caption` a caption to print above the table.
 
@@ -654,6 +654,43 @@ outTable(tab,
          to_indent=1,
          to_bold=2,
          caption= 'Status by Sex in the Lung data' )
+```
+
+## nestTable
+
+This function combines two columns into a single column with headers from one column and other values from the second columns
+
+Optional Arguments:
+  
+- `indent` logical indicating if the to_col values should be indented
+- `boldheaders` logical indicating if the head_col values should be in bold
+- `to_bold` row indices specifying which rows to bold
+- `caption` a caption to print above the table.
+- `hdr_prefix` optional string to prepend to headers
+- `hdr_suffix` optional string to append to headers
+
+```r
+twoIDcolumns <- data.frame(
+  Site = rep(c('A','B'),each=5),
+  ID = 1:10,
+  Height_cm = round(rnorm(10,190,10)),
+  Weight_kg = round(rnorm(10,80,3))
+)
+
+nestTable(data=twoIDcolumns,
+              head_col = 'Site',to_col = 'ID',hdr_prefix='Site ')
+```
+
+```{r}
+twoIDcolumns <- data.frame(
+  Site = rep(c('A','B'),each=5),
+  ID = 1:10,
+  Height_cm = round(rnorm(10,190,10)),
+  Weight_kg = round(rnorm(10,80,3))
+)
+
+nestTable(data=twoIDcolumns,
+              head_col = 'Site',to_col = 'ID',hdr_prefix='Site ')
 ```
 
 ## excelCol

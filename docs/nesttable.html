@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.4 Code Chunks | reportRx &amp; R Markdown</title>
-  <meta name="description" content="2.4 Code Chunks | reportRx &amp; R Markdown" />
+  <title>3.12 nestTable | reportRx &amp; R Markdown</title>
+  <meta name="description" content="3.12 nestTable | reportRx &amp; R Markdown" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.4 Code Chunks | reportRx &amp; R Markdown" />
+  <meta property="og:title" content="3.12 nestTable | reportRx &amp; R Markdown" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.4 Code Chunks | reportRx &amp; R Markdown" />
+  <meta name="twitter:title" content="3.12 nestTable | reportRx &amp; R Markdown" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="yaml-header.html"/>
-<link rel="next" href="running-chunks.html"/>
+<link rel="prev" href="outtable.html"/>
+<link rel="next" href="excelcol.html"/>
 <script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -221,34 +221,180 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="code-chunks" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> Code Chunks</h2>
-<p>Like Sweave, R Markdown has code chunks and the options are very similar. In R Markdown, chunk options can be set globally in the <code>setup</code> chunk. These options are over-ridden by any locally set options.</p>
-<p>For example, to hide the code and suppress warnings and messages <strong>in the output</strong> you can set the options like this:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="code-chunks.html#cb2-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">FALSE</span>,<span class="at">warning=</span><span class="cn">FALSE</span>,<span class="at">message =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-2"><a href="code-chunks.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reportRx)</span></code></pre></div>
-<p>Useful chunk options:</p>
+<div id="nesttable" class="section level2" number="3.12">
+<h2><span class="header-section-number">3.12</span> nestTable</h2>
+<p>This function combines two columns into a single column with headers from one column and other values from the second columns</p>
+<p>Optional Arguments:</p>
 <ul>
-<li><p><code>eval = FALSE</code> prevents evaluation of the code. This can be useful for chunks of code that take a long time to run and you may want to run once and save to an R file. It replaces the need to source a separate R script for some code.</p></li>
-<li><p><code>echo = FALSE</code> hides the code, but prints any output.</p></li>
-<li><p><code>warning = FALSE</code> and <code>message = FALSE</code> suppress warnings
-and messages.</p></li>
-<li><p><code>results = "hide"</code> hides the output (can be used with echo=TRUE).</p></li>
-<li><p><code>results = "asis"</code> treats the output of your R code as literal Markdown.
-This is useful if you want to generate text from your R code, for example using <code>cat</code>.</p></li>
-<li><p><code>fig.width = 5</code> and <code>fig.height = 5</code> set the height and width of figures
-(in inches).</p></li>
-<li><p><code>fig.cap ='A nice caption'</code> will print a caption beneath a figure.</p></li>
+<li><code>indent</code> logical indicating if the to_col values should be indented</li>
+<li><code>boldheaders</code> logical indicating if the head_col values should be in bold</li>
+<li><code>to_bold</code> row indices specifying which rows to bold</li>
+<li><code>caption</code> a caption to print above the table.</li>
+<li><code>hdr_prefix</code> optional string to prepend to headers</li>
+<li><code>hdr_suffix</code> optional string to append to headers</li>
 </ul>
-<p>For other options see <a href="https://yihui.name/knitr/options" class="uri">https://yihui.name/knitr/options</a>.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="nesttable.html#cb26-1" aria-hidden="true" tabindex="-1"></a>twoIDcolumns <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb26-2"><a href="nesttable.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Site =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&#39;A&#39;</span>,<span class="st">&#39;B&#39;</span>),<span class="at">each=</span><span class="dv">5</span>),</span>
+<span id="cb26-3"><a href="nesttable.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb26-4"><a href="nesttable.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Height_cm =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="dv">190</span>,<span class="dv">10</span>)),</span>
+<span id="cb26-5"><a href="nesttable.html#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Weight_kg =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="dv">80</span>,<span class="dv">3</span>))</span>
+<span id="cb26-6"><a href="nesttable.html#cb26-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-7"><a href="nesttable.html#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="nesttable.html#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="fu">nestTable</span>(<span class="at">data=</span>twoIDcolumns,</span>
+<span id="cb26-9"><a href="nesttable.html#cb26-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">head_col =</span> <span class="st">&#39;Site&#39;</span>,<span class="at">to_col =</span> <span class="st">&#39;ID&#39;</span>,<span class="at">hdr_prefix=</span><span class="st">&#39;Site &#39;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+ID
+</th>
+<th style="text-align:right;">
+Height_cm
+</th>
+<th style="text-align:right;">
+Weight_kg
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Site A
+</td>
+<td style="text-align:right;font-weight: bold;">
+</td>
+<td style="text-align:right;font-weight: bold;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+1
+</td>
+<td style="text-align:right;">
+197
+</td>
+<td style="text-align:right;">
+79
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+2
+</td>
+<td style="text-align:right;">
+201
+</td>
+<td style="text-align:right;">
+77
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+3
+</td>
+<td style="text-align:right;">
+198
+</td>
+<td style="text-align:right;">
+78
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+4
+</td>
+<td style="text-align:right;">
+187
+</td>
+<td style="text-align:right;">
+83
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+5
+</td>
+<td style="text-align:right;">
+163
+</td>
+<td style="text-align:right;">
+80
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Site B
+</td>
+<td style="text-align:right;font-weight: bold;">
+</td>
+<td style="text-align:right;font-weight: bold;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+6
+</td>
+<td style="text-align:right;">
+199
+</td>
+<td style="text-align:right;">
+81
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+7
+</td>
+<td style="text-align:right;">
+183
+</td>
+<td style="text-align:right;">
+82
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+8
+</td>
+<td style="text-align:right;">
+188
+</td>
+<td style="text-align:right;">
+77
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+9
+</td>
+<td style="text-align:right;">
+205
+</td>
+<td style="text-align:right;">
+79
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+10
+</td>
+<td style="text-align:right;">
+185
+</td>
+<td style="text-align:right;">
+78
+</td>
+</tr>
+</tbody>
+</table>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="yaml-header.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="running-chunks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="outtable.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="excelcol.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
