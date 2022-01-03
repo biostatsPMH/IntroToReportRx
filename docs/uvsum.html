@@ -24,7 +24,7 @@
 <meta name="author" content="Lisa Avery, Princess Margaret Biostatistics" />
 
 
-<meta name="date" content="2021-08-03" />
+<meta name="date" content="2022-01-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -193,8 +193,9 @@ div.csl-indent {
 <li class="chapter" data-level="3.10" data-path="etsum.html"><a href="etsum.html"><i class="fa fa-check"></i><b>3.10</b> etsum</a></li>
 <li class="chapter" data-level="3.11" data-path="outtable.html"><a href="outtable.html"><i class="fa fa-check"></i><b>3.11</b> outTable</a></li>
 <li class="chapter" data-level="3.12" data-path="nesttable.html"><a href="nesttable.html"><i class="fa fa-check"></i><b>3.12</b> nestTable</a></li>
-<li class="chapter" data-level="3.13" data-path="excelcol.html"><a href="excelcol.html"><i class="fa fa-check"></i><b>3.13</b> excelCol</a></li>
-<li class="chapter" data-level="3.14" data-path="rmdbibfile.html"><a href="rmdbibfile.html"><i class="fa fa-check"></i><b>3.14</b> rmdBibfile</a></li>
+<li class="chapter" data-level="3.13" data-path="rm-uv-mv.html"><a href="rm-uv-mv.html"><i class="fa fa-check"></i><b>3.13</b> rm_uv_mv</a></li>
+<li class="chapter" data-level="3.14" data-path="excelcol.html"><a href="excelcol.html"><i class="fa fa-check"></i><b>3.14</b> excelCol</a></li>
+<li class="chapter" data-level="3.15" data-path="rmdbibfile.html"><a href="rmdbibfile.html"><i class="fa fa-check"></i><b>3.15</b> rmdBibfile</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>4</b> Github</a>
 <ul>
@@ -202,7 +203,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.2" data-path="github-account.html"><a href="github-account.html"><i class="fa fa-check"></i><b>4.2</b> Github Account</a></li>
 </ul></li>
 <li class="divider"></li>
-<li> <a href="mailto:lisa.avery@uhnresearch.ca">Lisa Avery</a>   </li>
+<li> <a href="mailto:lisa.avery@uhn.ca">Lisa Avery</a>   </li>
 
 </ul>
 
@@ -294,7 +295,7 @@ Reference
 Male
 </td>
 <td style="text-align:right;">
-2.94 (1.76,4.88)
+3.24 (1.93,5.43)
 </td>
 <td style="text-align:right;">
 </td>
@@ -350,8 +351,9 @@ age
 <ul>
 <li><strong>showN</strong> is an option to show the sample size for each variable/factor level</li>
 <li><strong>CIwidth</strong> allows for differ confidence intervals to be produced</li>
-<li>output</li>
+<li>support for geeglm</li>
 <li>proper t-distribution confidence intervals for means are produced</li>
+<li>global p-values match paired t-tests (with pooled sd) for continuous outcomes</li>
 <li>function will check for variables and produce useful warnings</li>
 <li>character variables are automatically converted to factors</li>
 <li>function will now work with data imported from SPSS using <code>haven</code> package</li>

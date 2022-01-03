@@ -24,7 +24,7 @@
 <meta name="author" content="Lisa Avery, Princess Margaret Biostatistics" />
 
 
-<meta name="date" content="2021-08-03" />
+<meta name="date" content="2022-01-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -193,8 +193,9 @@ div.csl-indent {
 <li class="chapter" data-level="3.10" data-path="etsum.html"><a href="etsum.html"><i class="fa fa-check"></i><b>3.10</b> etsum</a></li>
 <li class="chapter" data-level="3.11" data-path="outtable.html"><a href="outtable.html"><i class="fa fa-check"></i><b>3.11</b> outTable</a></li>
 <li class="chapter" data-level="3.12" data-path="nesttable.html"><a href="nesttable.html"><i class="fa fa-check"></i><b>3.12</b> nestTable</a></li>
-<li class="chapter" data-level="3.13" data-path="excelcol.html"><a href="excelcol.html"><i class="fa fa-check"></i><b>3.13</b> excelCol</a></li>
-<li class="chapter" data-level="3.14" data-path="rmdbibfile.html"><a href="rmdbibfile.html"><i class="fa fa-check"></i><b>3.14</b> rmdBibfile</a></li>
+<li class="chapter" data-level="3.13" data-path="rm-uv-mv.html"><a href="rm-uv-mv.html"><i class="fa fa-check"></i><b>3.13</b> rm_uv_mv</a></li>
+<li class="chapter" data-level="3.14" data-path="excelcol.html"><a href="excelcol.html"><i class="fa fa-check"></i><b>3.14</b> excelCol</a></li>
+<li class="chapter" data-level="3.15" data-path="rmdbibfile.html"><a href="rmdbibfile.html"><i class="fa fa-check"></i><b>3.15</b> rmdBibfile</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>4</b> Github</a>
 <ul>
@@ -202,7 +203,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.2" data-path="github-account.html"><a href="github-account.html"><i class="fa fa-check"></i><b>4.2</b> Github Account</a></li>
 </ul></li>
 <li class="divider"></li>
-<li> <a href="mailto:lisa.avery@uhnresearch.ca">Lisa Avery</a>   </li>
+<li> <a href="mailto:lisa.avery@uhn.ca">Lisa Avery</a>   </li>
 
 </ul>
 
@@ -227,6 +228,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="etsum.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_etsum</span>(<span class="at">data =</span> lung, <span class="at">response =</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>,<span class="st">&quot;Status&quot;</span>), <span class="at">group =</span> <span class="dv">1</span>,</span>
 <span id="cb24-2"><a href="etsum.html#cb24-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">times=</span><span class="fu">c</span>(<span class="dv">365</span>,<span class="dv">720</span>,<span class="dv">1095</span>), <span class="at">units=</span><span class="st">&quot;days&quot;</span>)</span></code></pre></div>
 <p>Will output this:</p>
+<p>There are 228 patients. There were 165 (72%) events. The median and range of the follow-up times is 255.5 (5-1022) days. The KM median event time is 310 with 95% confidence Interval (285,363). The first and last event times occurred at 5 and 883 days respectively. The 365,720 and 883 day probabilities of ‘survival’ and their 95% confidence intervals are 41 (34-49),12 (8-20) and 5 (2-12) percent.</p>
 <p><strong>NOTE:</strong> This function currently accepts only integer response variables.</p>
 </div>
             </section>

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.2 Github Account | reportRx &amp; R Markdown</title>
-  <meta name="description" content="4.2 Github Account | reportRx &amp; R Markdown" />
+  <title>3.13 rm_uv_mv | reportRx &amp; R Markdown</title>
+  <meta name="description" content="3.13 rm_uv_mv | reportRx &amp; R Markdown" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.2 Github Account | reportRx &amp; R Markdown" />
+  <meta property="og:title" content="3.13 rm_uv_mv | reportRx &amp; R Markdown" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.2 Github Account | reportRx &amp; R Markdown" />
+  <meta name="twitter:title" content="3.13 rm_uv_mv | reportRx &amp; R Markdown" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="help-us-improve.html"/>
-
+<link rel="prev" href="nesttable.html"/>
+<link rel="next" href="excelcol.html"/>
 <script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -222,20 +222,107 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="github-account" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Github Account</h2>
-<p>If you don’t already have a github account you will need to set one up to <a href="https://github.com/biostatsPMH/reportRx/issues">log issues</a> or <a href="https://github.com/biostatsPMH/reportRx/tree/devel">access the code</a>.</p>
-<p>Please log issues using your <strong>uhnresearch email</strong> (and your real name!). This will help us to prioritise issues arising from within the department.</p>
-
+<div id="rm_uv_mv" class="section level2" number="3.13">
+<h2><span class="header-section-number">3.13</span> rm_uv_mv</h2>
+<p>This function will combine two tables created by rm_uvsum and rm_mvsum, using tableOnly=T.
+All covariates must appear in the univariate table, but covariates can be missing from the multivariable table.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="rm-uv-mv.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;mtcars&quot;</span>)</span>
+<span id="cb27-2"><a href="rm-uv-mv.html#cb27-2" aria-hidden="true" tabindex="-1"></a>uv_tab <span class="ot">&lt;-</span> <span class="fu">rm_uvsum</span>(<span class="at">covs=</span><span class="fu">c</span>(<span class="st">&quot;wt&quot;</span>,<span class="st">&quot;hp&quot;</span>,<span class="st">&quot;gear&quot;</span>),<span class="at">response=</span><span class="st">&#39;mpg&#39;</span>,<span class="at">data=</span>mtcars,<span class="at">tableOnly=</span>T)</span>
+<span id="cb27-3"><a href="rm-uv-mv.html#cb27-3" aria-hidden="true" tabindex="-1"></a>mv_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg<span class="sc">~</span>wt<span class="sc">+</span>hp,<span class="at">data=</span>mtcars)</span>
+<span id="cb27-4"><a href="rm-uv-mv.html#cb27-4" aria-hidden="true" tabindex="-1"></a>mv_tab <span class="ot">&lt;-</span> <span class="fu">rm_mvsum</span>(mv_fit,<span class="at">tableOnly =</span> T)</span>
+<span id="cb27-5"><a href="rm-uv-mv.html#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_uv_mv</span>(uv_tab,mv_tab)</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Covariate
+</th>
+<th style="text-align:right;">
+Unadjusted Estimate(95%CI)
+</th>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:right;">
+p
+</th>
+<th style="text-align:right;">
+Adjusted Estimate(95%CI)
+</th>
+<th style="text-align:right;">
+p (adj)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+wt
+</td>
+<td style="text-align:right;font-weight: bold;">
+-5.34 (-6.49,-4.20)
+</td>
+<td style="text-align:right;font-weight: bold;">
+32
+</td>
+<td style="text-align:right;font-weight: bold;">
+&lt;0.001
+</td>
+<td style="text-align:right;font-weight: bold;">
+-3.88 (-5.17,-2.58)
+</td>
+<td style="text-align:right;font-weight: bold;">
+&lt;0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+hp
+</td>
+<td style="text-align:right;font-weight: bold;">
+-0.07 (-0.09,-0.05)
+</td>
+<td style="text-align:right;font-weight: bold;">
+32
+</td>
+<td style="text-align:right;font-weight: bold;">
+&lt;0.001
+</td>
+<td style="text-align:right;font-weight: bold;">
+-0.03 (-0.05,-0.01)
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+gear
+</td>
+<td style="text-align:right;">
+3.92 (1.25,6.59)
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="help-us-improve.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="nesttable.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="excelcol.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

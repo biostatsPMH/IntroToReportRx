@@ -23,7 +23,7 @@ output:
           <li> &nbsp;&nbsp; reportRx    </li>
           <li> &nbsp;&nbsp; PMH Biostatistics</li>
         after: |
-          <li> <a href="mailto:lisa.avery@uhnresearch.ca">Lisa Avery</a>   </li>
+          <li> <a href="mailto:lisa.avery@uhn.ca">Lisa Avery</a>   </li>
         toolbar:
         position: fixed
       edit : null
@@ -63,7 +63,7 @@ There are four basic types of functions:
 - tabular reporting functions (`covsum`,`uvsum`,`mvvsum`,`ordsum`)
 - wrappers for printing in Sweave (`pcovsum`,`puvsum`,`pmvsum`) 
 - wrappers for printing in RMarkdown (`rm_covsum`,`rm_uvsum`,`rm_mvsum`)
-- plotting functions (`ggkmcif`,`plotunivariate`,`forestplot`,`riskplot`)
+- plotting functions (`ggkmcif`,`plotuv`,`forestplot2`)
 
 R Markdown + reportRx  = More time on stats and less time on formatting `r emo::ji("smile")` 
 
@@ -331,19 +331,16 @@ R packages can be referenced like this: `[@R-reportRx]` and R like this: `[@R-ba
 
 ## Creating a bibliography
 
-For R Markdown to create the bibliography, a bibliography file (in the biblatex format) needs to be specified in the YAML. Optionally, a csl file can also be specified. Note that if no filepath is specified, then the directory of the .Rmd file is used. In this example, bibfile.bib is in the local directory, but the csl is stored in a central location.
+For R Markdown to incorporate the bibliography into the document, a bibliography file (in the biblatex format) needs to be specified in the YAML. Optionally, a csl file can also be specified. Note that if no filepath is specified, then the directory of the .Rmd file is used. In this example, bibfile.bib is in the local directory, but the csl is stored in a central location.
 
   ```yaml
   bibliography:  bibfile.bib
   csl: ../../../csl/Vancouver.csl
   ```
 
-There is now a reportRx function, `rmdBibfile` that will read through an R Markdown document and extract all the references from a master bibfile and write them to a local file along with and all the R packages referenced in the document.
+**Note::** This function has been removed as of August 2021, but will be incorporated into the reportRx extension package in the autumn of 2021.
 
-`reportRx::rmdBibfile('../library.bib','bibfile.bib')` will use the file library.bib in the parent directory to extract references from and write a smaller bib file in the local directory stored as bibfile.bib with all the references in the current document, including R packages.
-
-
-The master bibfile can be the .bib file produced by programs like Mendeley or Zotero. 
+> There is now a reportRx function, `rmdBibfile` that will read through an R Markdown document and extract all the references from a master bibfile and write them to a local file along with and all the R packages referenced in the document. `reportRx::rmdBibfile('../library.bib','bibfile.bib')` will use the file library.bib in the parent directory to extract references from and write a smaller bib file in the local directory stored as bibfile.bib with all the references in the current document, including R packages. The master bibfile can be the .bib file produced by programs like Mendeley or Zotero. 
 
 ## An easy bibliography for R packages
 
@@ -375,8 +372,8 @@ Reporting Functions:
   * [covsum]  Used to produced Table 1 style output
   * [etsum] To summarise output from a coxph model
   * [uvsum] To combine several univariate models into a single table
-  * [ordsum]  Like `uvsum` for ordinal output. May be added into uvsum one day
   * [mvsum]  To summarise multivariable model output
+  * [rm_uv_mv]  Combine uvsum and mvsum outputs
     
 Printing functions for **Sweave** use the prefix `p` (ie. `pcovsum()`). 
 
@@ -512,10 +509,11 @@ rm_uvsum(response = 'Status',
 
 **New Functionality & Bug Fixes**
   
-  - **showN** is an option to show the sample size for each variable/factor level
+- **showN** is an option to show the sample size for each variable/factor level
 - **CIwidth** allows for differ confidence intervals to be produced
-- output
+- support for geeglm
 - proper t-distribution confidence intervals for means are produced
+- global p-values match paired t-tests (with pooled sd) for continuous outcomes
 - function will check for variables and produce useful warnings
 - character variables are automatically converted to factors
 - function will now work with data imported from SPSS using `haven` package
@@ -546,6 +544,10 @@ rm_mvsum(glm_fit)
 - updated CIs to use t-test instead of Z-test for means
 - fixed treatment of glm objects to properly handle linear, binomial and poisson models
 - fix to allow interaction terms in the model
+
+**TO DO**
+
+-allow for interactions with gee models
 
 ## ggsurv
 
@@ -620,7 +622,7 @@ rm_etsum(data = lung, response = c("time","Status"), group = 1,
 Will output this:
   
 
-```{r, results='asis',eval=F}
+```{r, results='asis',eval=T}
 rm_etsum(data = lung, response = c("time","status"), group = 1,
          times=c(365,720,1095), units="days")
 
@@ -693,6 +695,29 @@ nestTable(data=twoIDcolumns,
               head_col = 'Site',to_col = 'ID',hdr_prefix='Site ')
 ```
 
+## rm_uv_mv
+
+This function will combine two tables created by rm_uvsum and rm_mvsum, using tableOnly=T.
+All covariates must appear in the univariate table, but covariates can be missing from the multivariable table.
+
+```r
+data("mtcars")
+uv_tab <- rm_uvsum(covs=c("wt","hp","gear"),response='mpg',data=mtcars,tableOnly=T)
+mv_fit <- lm(mpg~wt+hp,data=mtcars)
+mv_tab <- rm_mvsum(mv_fit,tableOnly = T)
+rm_uv_mv(uv_tab,mv_tab)
+```
+
+```{r}
+data("mtcars")
+uv_tab <- rm_uvsum(covs=c("wt","hp","gear"),response='mpg',data=mtcars,tableOnly=T)
+mv_fit <- lm(mpg~wt+hp,data=mtcars)
+mv_tab <- rm_mvsum(mv_fit,tableOnly = T)
+rm_uv_mv(uv_tab,mv_tab)
+
+```
+
+
 ## excelCol
 
 Retrieve the column numbers corresponding to Excel column headers. This can be useful if variables are referred to by Excel column names in the statistical analysis plan.
@@ -711,6 +736,8 @@ excelCol(A,B,BG,CC)
 
 ## rmdBibfile
 
+**NOTE: REMOVED AUG 2021 - but will be added to an extension package**
+
 This function will extract references in the current file from a master bib file and save them to a local bib file. The function works well with Mendeley library *.bib master files. If R packages are referenced in the document these will also be included in the output bib file.
 
 R packages can be cited by using the syntax `[@R-packagename]` for example: `[@R-reportRx]` for the `reportRx` package and `[@R-base]` for the R language itself.
@@ -726,7 +753,7 @@ rmdBibfile(bibfile = '../../Mendeley/masterbibfile.bib',outfile='local.bib')
 
 # Github
 
-[reportRx](https://github.com/biostatsPMH/reportRx) and [this documentation](https://github.com/biostatsPMH/IntroToReportRx) are available on the PMH Biostats Github page, along with Jessica's [swimmplot package](https://github.com/biostatsPMH/swimplot).
+[reportRx](https://github.com/biostatsPMH/reportRx#reportrx) and [this documentation](https://github.com/biostatsPMH/IntroToReportRx) are available on the PMH Biostats Github page, along with Jessica's [swimmplot package](https://github.com/biostatsPMH/swimplot) and the [exceldata package](https://github.com/biostatsPMH/exceldata#exceldata)
 
 Anyone can copy or download code from the git repository, without fear of deleting anything.
 
